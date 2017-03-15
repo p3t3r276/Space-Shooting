@@ -10,7 +10,7 @@ namespace SpaceShooting.Entity
 
 		public Player(float x, float y) : base(x, y)
 		{
-			speed = 10f;
+			speed = 10.0f;
 		}
 
 		public override void Update()
@@ -18,8 +18,7 @@ namespace SpaceShooting.Entity
 			base.Update();
 
 			Rotate();
-
-			Console.WriteLine($"{{{_position.X}, {_position.Y}}}");
+			Move();
 		}
 
 		public override void Render(Graphics g)
@@ -39,6 +38,16 @@ namespace SpaceShooting.Entity
 			rotAngle = (float)Math.Atan2(opp, adj) * Game.Rad2Deg;
 		}
 
+		public void Move()
+		{
+			if (_up) _velocity.Y = 1;
+			else if (_down) _velocity.Y = -1;
+			else if (_left) _velocity.X = -1;
+			else if (_right) _velocity.X = 1;
+
+			if (!_up && !_down) _velocity.Y = 0;
+			if (!_left && !_right) _velocity.X = 0;
+		}
 
 		public bool Up
 		{

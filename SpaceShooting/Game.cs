@@ -72,5 +72,21 @@ namespace SpaceShooting
 		{
 			gsm.KeyUp(e);
 		}
+
+		public static float Clamp(float value, float max, float min)
+		{
+			if (value > max)
+			{
+				return value = max;
+			}
+			else if (value < min)
+			{
+				return value = min;
+			}
+			else
+			{
+				return value;
+			}
+		}
 	}
 }

@@ -4,7 +4,7 @@ namespace SpaceShooting.Entity
 {
 	public abstract class Entity
 	{
-		protected float speed = 1.0f;
+		protected float speed = 0;
 		protected PointF _position, _velocity;
 
 		public Entity(float x, float y)
@@ -15,8 +15,8 @@ namespace SpaceShooting.Entity
 
 		public virtual void Update()
 		{
-			_position.X += _velocity.X;
-			_position.Y += _velocity.Y;
+			_position.X += _velocity.X * speed;
+			_position.Y += _velocity.Y * speed;
 		}
 		public abstract void Render(Graphics g);
 	}
