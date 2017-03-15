@@ -25,6 +25,11 @@ namespace SpaceShooting
 		private void Form1_Load(object sender, EventArgs e)
 		{
 			Game_Init();
+			if (window.FullScreen == true)
+			{
+				WIDTH = Width;
+				HEIGHT = Height;
+			}
 		}
 
 		private void Game_Update(object sender, EventArgs e)
@@ -73,13 +78,13 @@ namespace SpaceShooting
 			gsm.KeyUp(e);
 		}
 
-		public static float Clamp(float value, float max, float min)
+		public static float Clamp(float value, float min, float max)
 		{
-			if (value > max)
+			if (value >= max)
 			{
 				return value = max;
 			}
-			else if (value < min)
+			else if (value <= min)
 			{
 				return value = min;
 			}

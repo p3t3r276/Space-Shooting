@@ -17,6 +17,9 @@ namespace SpaceShooting.Entity
 		{
 			base.Update();
 
+			_position.X = Game.Clamp(_position.X, 0, Game.WIDTH - 38);
+			_position.Y = Game.Clamp(_position.Y, 0, Game.HEIGHT - 32);
+
 			Rotate();
 			Move();
 		}
@@ -40,8 +43,8 @@ namespace SpaceShooting.Entity
 
 		public void Move()
 		{
-			if (_up) _velocity.Y = 1;
-			else if (_down) _velocity.Y = -1;
+			if (_up) _velocity.Y = -1;
+			else if (_down) _velocity.Y = 1;
 			else if (_left) _velocity.X = -1;
 			else if (_right) _velocity.X = 1;
 
