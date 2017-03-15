@@ -1,5 +1,6 @@
 ﻿using SpaceShooting.GameState;
 using System.Drawing;
+using System.Windows.Forms;
 
 namespace SpaceShooting.Manager
 {
@@ -53,6 +54,22 @@ namespace SpaceShooting.Manager
 			if (gameStates[currentState] != null)
 			{
 				gameStates[currentState].Update();
+			}
+		}
+
+		public void KeyUp(KeyEventArgs e)
+		{
+			if (gameStates[currentState] != null)
+			{
+				gameStates[currentState].KeyUp(e);
+			}
+		}
+
+		public void KeyDown(KeyEventArgs e)
+		{
+			if (gameStates[currentState] != null)
+			{
+				gameStates[currentState].KeyDown(e);
 			}
 		}
 

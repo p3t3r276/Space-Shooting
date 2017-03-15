@@ -40,6 +40,7 @@
 			this.Load += new System.EventHandler(this.Form1_Load);
 			this.Paint += new System.Windows.Forms.PaintEventHandler(this.Form1_Paint);
 			this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Game_KeyDown);
+			this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Game_KeyUp);
 			this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Game_MouseMove);
 			this.ResumeLayout(false);
 

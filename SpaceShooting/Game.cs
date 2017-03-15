@@ -59,11 +59,18 @@ namespace SpaceShooting
 			{
 				case Keys.Escape: Application.Exit(); break;
 			}
+
+			gsm.KeyDown(e);
 		}
 
 		private void Game_MouseMove(object sender, MouseEventArgs e)
 		{
 			mousePositionRelativeToForm = PointToClient(Cursor.Position);
+		}
+
+		private void Game_KeyUp(object sender, KeyEventArgs e)
+		{
+			gsm.KeyUp(e);
 		}
 	}
 }

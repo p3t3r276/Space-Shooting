@@ -1,5 +1,6 @@
 ﻿using SpaceShooting.Manager;
 using System.Drawing;
+using System.Windows.Forms;
 
 namespace SpaceShooting.GameState
 {
@@ -14,5 +15,7 @@ namespace SpaceShooting.GameState
 
 		public abstract void Render(Graphics g);
 		public abstract void Update();
+		public abstract void KeyUp(KeyEventArgs e);
+		public abstract void KeyDown(KeyEventArgs e);
 	}
 }
