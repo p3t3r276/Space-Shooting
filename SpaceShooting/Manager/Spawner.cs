@@ -2,5 +2,9 @@
 {
 	public class Spawner
 	{
+		Handler h;
+
+		public Spawner()
+		{ }
 	}
 }
