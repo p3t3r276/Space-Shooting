@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpaceShooting", "SpaceShooting\SpaceShooting.csproj", "{FF0D3D63-BBF6-42EA-9757-E7726A60E407}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FF0D3D63-BBF6-42EA-9757-E7726A60E407}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FF0D3D63-BBF6-42EA-9757-E7726A60E407}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FF0D3D63-BBF6-42EA-9757-E7726A60E407}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FF0D3D63-BBF6-42EA-9757-E7726A60E407}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
