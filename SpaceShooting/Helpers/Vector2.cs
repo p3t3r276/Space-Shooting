@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 
 namespace SpaceShooting.Helpers
 {
@@ -10,6 +11,12 @@ namespace SpaceShooting.Helpers
 		{
 			_x = x;
 			_y = y;
+		}
+
+		public Vector2(PointF point)
+		{
+			_x = point.X;
+			_y = point.Y;
 		}
 
 		public float magnitude()

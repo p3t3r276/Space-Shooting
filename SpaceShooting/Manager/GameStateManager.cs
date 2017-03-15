@@ -56,7 +56,7 @@ namespace SpaceShooting.Manager
 			}
 		}
 
-		public void Draw(Graphics g)
+		public void Render(Graphics g)
 		{
 			if (gameStates[currentState] != null)
 			{

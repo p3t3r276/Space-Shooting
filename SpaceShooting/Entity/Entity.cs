@@ -5,17 +5,15 @@ namespace SpaceShooting.Entity
 	public abstract class Entity
 	{
 		protected float _x, _y, _velX, _velY, size;
-		protected Color color;
-		protected float speed = 1;
+		protected float speed = 1.0f;
 
 		public Entity(float x, float y)
 		{
-
 			_x = x;
 			_y = y;
 		}
 
-		public void Update()
+		public virtual void Update()
 		{
 			_x += _velX;
 			_y += _velY;
