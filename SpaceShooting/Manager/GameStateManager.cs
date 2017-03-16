@@ -9,6 +9,7 @@ namespace SpaceShooting.Manager
 		private GameState.GameState[] gameStates;
 		private int currentState;
 		private int previousState;
+		private Handler _handler;
 
 		public const int NUM_STATES = 4;
 		public const int INTRO = 0;
@@ -16,8 +17,9 @@ namespace SpaceShooting.Manager
 		public const int PLAY = 2;
 		public const int GAMEOVER = 3;
 
-		public GameStateManager()
+		public GameStateManager(Handler handler)
 		{
+			_handler = new Handler();
 			gameStates = new GameState.GameState[NUM_STATES];
 			SetState(PLAY);
 
@@ -37,7 +39,7 @@ namespace SpaceShooting.Manager
 			}
 			else if (i == PLAY)
 			{
-				gameStates[i] = new PlayState(this);
+				gameStates[i] = new PlayState(this, _handler);
 			}
 			else if (i == GAMEOVER)
 			{
@@ -78,6 +80,14 @@ namespace SpaceShooting.Manager
 			if (gameStates[currentState] != null)
 			{
 				gameStates[currentState].Render(g);
+			}
+		}
+
+		public void MouseDown(MouseEventArgs e)
+		{
+			if (gameStates[currentState] != null)
+			{
+				gameStates[currentState].MouseDown(e);
 			}
 		}
 	}

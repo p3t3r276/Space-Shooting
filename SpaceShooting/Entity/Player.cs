@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SpaceShooting.Manager;
+using System;
 using System.Drawing;
 
 namespace SpaceShooting.Entity
@@ -6,9 +7,8 @@ namespace SpaceShooting.Entity
 	public class Player : Entity
 	{
 		private float rotAngle;
-		private bool _up = false, _down = false, _left = false, _right = false;
 
-		public Player(float x, float y) : base(x, y)
+		public Player(float x, float y, Handler handler) : base(x, y, handler)
 		{
 			speed = 10.0f;
 		}
@@ -50,26 +50,6 @@ namespace SpaceShooting.Entity
 
 			if (!_up && !_down) _velocity.Y = 0;
 			if (!_left && !_right) _velocity.X = 0;
-		}
-
-		public bool Up
-		{
-			set { _up = value; }
-		}
-
-		public bool Down
-		{
-			set { _down = value; }
-		}
-
-		public bool Left
-		{
-			set { _left = value; }
-		}
-
-		public bool Right
-		{
-			set { _right = value; }
 		}
 	}
 }

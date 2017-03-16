@@ -1,9 +1,9 @@
 E:\projects\C#\SpaceShootingGame\SpaceShooting\bin\Debug\SpaceShooting.exe.config
 E:\projects\C#\SpaceShootingGame\SpaceShooting\bin\Debug\SpaceShooting.exe
 E:\projects\C#\SpaceShootingGame\SpaceShooting\bin\Debug\SpaceShooting.pdb
-E:\projects\C#\SpaceShootingGame\SpaceShooting\obj\Debug\SpaceShooting.csprojResolveAssemblyReference.cache
 E:\projects\C#\SpaceShootingGame\SpaceShooting\obj\Debug\SpaceShooting.Game.resources
 E:\projects\C#\SpaceShootingGame\SpaceShooting\obj\Debug\SpaceShooting.Properties.Resources.resources
 E:\projects\C#\SpaceShootingGame\SpaceShooting\obj\Debug\SpaceShooting.csproj.GenerateResource.Cache
 E:\projects\C#\SpaceShootingGame\SpaceShooting\obj\Debug\SpaceShooting.exe
 E:\projects\C#\SpaceShootingGame\SpaceShooting\obj\Debug\SpaceShooting.pdb
+E:\projects\C#\SpaceShootingGame\SpaceShooting\obj\Debug\SpaceShooting.csprojResolveAssemblyReference.cache

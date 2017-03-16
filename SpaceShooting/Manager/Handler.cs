@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Drawing;
 
 namespace SpaceShooting.Manager
 {
@@ -10,16 +11,22 @@ namespace SpaceShooting.Manager
 		{
 		}
 
-		public void Add(Entity.Entity e)
+		public void Render(Graphics g)
 		{
-			entitiesList.Add(e);
+			for (int i = 0; i < entitiesList.Count; i++)
+			{
+				Entity.Entity tempEntity = entitiesList[i];
+				tempEntity.Render(g);
+			}
 		}
 
-		public void Remove(Entity.Entity e)
+		public void Update()
 		{
-			entitiesList.Remove(e);
+			for (int i = 0; i < entitiesList.Count; i++)
+			{
+				Entity.Entity tempEntity = entitiesList[i];
+				tempEntity.Update();
+			}
 		}
-
-		public void Clear() => entitiesList.Clear();
 	}
 }

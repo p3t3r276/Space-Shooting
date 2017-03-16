@@ -1,65 +1,82 @@
 ﻿using SpaceShooting.Entity;
 using SpaceShooting.Manager;
-using System.Drawing;
 using System.Windows.Forms;
 
 namespace SpaceShooting.GameState
 {
 	public class PlayState : GameState
 	{
-		Player player;
-
-		public PlayState(GameStateManager gsm) : base(gsm)
+		public PlayState(GameStateManager gsm, Handler handler) : base(gsm, handler)
 		{
-			player = new Player((Game.WIDTH - 16) / 2, (Game.HEIGHT - 16) / 2);
+			_handler.entitiesList.Add(new Player((Game.WIDTH - 16) / 2, (Game.HEIGHT - 16) / 2, _handler));
+			_handler.entitiesList.Add(new BasicEnemy(100, 100, _handler));
 		}
 
 		public override void KeyUp(KeyEventArgs e)
 		{
-			switch (e.KeyCode)
+			for (int i = 0; i < _handler.entitiesList.Count; i++)
 			{
-				case Keys.W:
-					player.Up = false;
-					break;
-				case Keys.S:
-					player.Down = false;
-					break;
-				case Keys.A:
-					player.Left = false;
-					break;
-				case Keys.D:
-					player.Right = false;
-					break;
+				Entity.Entity player = _handler.entitiesList[i];
+				if (player is Player)
+				{
+					switch (e.KeyCode)
+					{
+						case Keys.W:
+							player.Up = false;
+							break;
+						case Keys.S:
+							player.Down = false;
+							break;
+						case Keys.A:
+							player.Left = false;
+							break;
+						case Keys.D:
+							player.Right = false;
+							break;
+					}
+				}
 			}
 		}
 
 		public override void KeyDown(KeyEventArgs e)
 		{
-			switch (e.KeyCode)
+			for (int i = 0; i < _handler.entitiesList.Count; i++)
 			{
-				case Keys.W:
-					player.Up = true;
-					break;
-				case Keys.S:
-					player.Down = true;
-					break;
-				case Keys.A:
-					player.Left = true;
-					break;
-				case Keys.D:
-					player.Right = true;
-					break;
+				Entity.Entity player = _handler.entitiesList[i];
+				if (player is Player)
+				{
+					switch (e.KeyCode)
+					{
+						case Keys.W:
+							player.Up = true;
+							break;
+						case Keys.S:
+							player.Down = true;
+							break;
+						case Keys.A:
+							player.Left = true;
+							break;
+						case Keys.D:
+							player.Right = true;
+							break;
+					}
+				}
 			}
 		}
 
-		public override void Render(Graphics g)
+		public override void MouseDown(MouseEventArgs e)
 		{
-			player.Render(g);
-		}
-
-		public override void Update()
-		{
-			player.Update();
+			if (e.Button == MouseButtons.Left)
+			{
+				for (int i = 0; i < _handler.entitiesList.Count; i++)
+				{
+					Entity.Entity temp = _handler.entitiesList[i];
+					if (temp is Player)
+					{
+						_handler.entitiesList.Add(new Bullet(temp.Position.X + 12, temp.Position.Y + 36, _handler));
+					}
+				}
+			}
 		}
 	}
 }

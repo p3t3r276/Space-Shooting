@@ -41,6 +41,7 @@
 			this.Paint += new System.Windows.Forms.PaintEventHandler(this.Form1_Paint);
 			this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Game_KeyDown);
 			this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Game_KeyUp);
+			this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Game_MouseDown);
 			this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Game_MouseMove);
 			this.ResumeLayout(false);
 

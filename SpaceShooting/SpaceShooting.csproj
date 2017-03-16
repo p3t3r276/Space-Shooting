@@ -48,6 +48,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entity\BasicEnemy.cs" />
+    <Compile Include="Entity\Bullet.cs" />
     <Compile Include="Entity\Entity.cs" />
     <Compile Include="Entity\Player.cs" />
     <Compile Include="Game.cs">

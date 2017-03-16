@@ -2,9 +2,15 @@
 {
 	public class Spawner
 	{
-		Handler h;
+		Handler handler;
 
-		public Spawner()
-		{ }
+		public Spawner(float x, float y, Handler handler)
+		{
+			this.handler = handler;
+		}
+
+		public void Update()
+		{
+		}
 	}
 }
