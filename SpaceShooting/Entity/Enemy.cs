@@ -28,6 +28,7 @@ namespace SpaceShooting.Entity
 			if (_health <= 0)
 			{
 				_handler.entitiesList.Remove(this);
+				_handler.entitiesList.Add(new Explosion(_position.X, _position.Y, _handler, _size, _size + 20));
 			}
 		}
 	}

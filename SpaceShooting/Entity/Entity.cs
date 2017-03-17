@@ -7,7 +7,7 @@ namespace SpaceShooting.Entity
 	public abstract class Entity
 	{
 		protected float _speed = 0;
-		protected int _size = 0;
+		protected float _size = 0;
 		protected PointF _position, _velocity;
 		protected Handler _handler;
 

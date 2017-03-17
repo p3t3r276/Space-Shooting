@@ -59,7 +59,7 @@ namespace SpaceShooting
 			_handler = new Handler();
 			_gsm = new GameStateManager(_handler);
 
-			_window = new WindowManager(WIDTH, HEIGHT, "Space Shooting Game", Color.Black, this, true);
+			_window = new WindowManager(WIDTH, HEIGHT, "Space Shooting Game", Color.Black, this, false);
 		}
 
 		private void Game_KeyDown(object sender, KeyEventArgs e)

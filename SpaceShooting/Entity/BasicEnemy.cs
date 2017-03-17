@@ -6,11 +6,15 @@ namespace SpaceShooting.Entity
 {
 	public class BasicEnemy : Enemy
 	{
+		Random rand = new Random();
+
 		public BasicEnemy(float x, float y, Handler handler) : base(x, y, handler)
 		{
 			_health = 2;
-			_speed = 3.0f;
+			_speed = 8.0f;
 			_size = 16;
+			_velocity.X = 1;
+			_velocity.Y = -1;
 		}
 
 		public override void Update()
@@ -29,18 +33,14 @@ namespace SpaceShooting.Entity
 
 		public override void Move()
 		{
-			for (int i = 0; i < _handler.entitiesList.Count; i++)
+			if (_position.X <= 0 || _position.X >= Game.WIDTH - 16)
 			{
-				Entity target = _handler.entitiesList[i];
-				if (target is Player)
-				{
-					float diffX = target.Position.X - _position.X;
-					float diffY = target.Position.Y - _position.Y;
-					float dist = (float)Math.Sqrt(diffX * diffX + diffY * diffY);
+				_velocity.X = -_velocity.X;
+			}
 
-					_velocity.X = (1 / dist) * diffX;
-					_velocity.Y = (1 / dist) * diffY;
-				}
+			if (_position.Y <= 0 || _position.Y >= Game.HEIGHT - 16)
+			{
+				_velocity.Y = -_velocity.Y;
 			}
 		}
 

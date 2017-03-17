@@ -57,6 +57,10 @@ namespace SpaceShooting.Entity
 
 		public override void Move()
 		{
+			if (_position.X <= 0 || _position.X >= Game.WIDTH || _position.Y <= 0 || _position.Y >= Game.HEIGHT)
+			{
+				_handler.entitiesList.Remove(this);
+			}
 		}
 	}
 }
