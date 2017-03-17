@@ -9,6 +9,7 @@ namespace SpaceShooting.Entity
 		public BasicEnemy(float x, float y, Handler handler) : base(x, y, handler)
 		{
 			speed = 5.0f;
+			Move();
 		}
 
 		public override void Update()
