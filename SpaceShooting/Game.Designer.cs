@@ -43,6 +43,7 @@
 			this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Game_KeyUp);
 			this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Game_MouseDown);
 			this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Game_MouseMove);
+			this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Game_MouseUp);
 			this.ResumeLayout(false);
 
 		}

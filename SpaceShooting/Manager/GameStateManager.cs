@@ -90,5 +90,13 @@ namespace SpaceShooting.Manager
 				gameStates[currentState].MouseDown(e);
 			}
 		}
+
+		public void MouseUp(MouseEventArgs e)
+		{
+			if (gameStates[currentState] != null)
+			{
+				gameStates[currentState].MouseUp(e);
+			}
+		}
 	}
 }

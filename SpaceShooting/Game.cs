@@ -17,7 +17,7 @@ namespace SpaceShooting
 		public static int WIDTH = 800;
 		public static int HEIGHT = 600;
 		public static Point mousePositionRelativeToForm;
-		public const float Rad2Deg = 180f / (float)Math.PI;
+		public const float RadToDeg = 180f / (float)Math.PI;
 
 		public Game()
 		{
@@ -100,6 +100,11 @@ namespace SpaceShooting
 		private void Game_MouseDown(object sender, MouseEventArgs e)
 		{
 			_gsm.MouseDown(e);
+		}
+
+		private void Game_MouseUp(object sender, MouseEventArgs e)
+		{
+			_gsm.MouseUp(e);
 		}
 	}
 }

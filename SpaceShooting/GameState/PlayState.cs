@@ -73,7 +73,22 @@ namespace SpaceShooting.GameState
 					Entity.Entity temp = _handler.entitiesList[i];
 					if (temp is Player)
 					{
-						_handler.entitiesList.Add(new Bullet(temp.Position.X + 12, temp.Position.Y, _handler));
+						temp.Firing = true;
+					}
+				}
+			}
+		}
+
+		public override void MouseUp(MouseEventArgs e)
+		{
+			if (e.Button == MouseButtons.Left)
+			{
+				for (int i = 0; i < _handler.entitiesList.Count; i++)
+				{
+					Entity.Entity temp = _handler.entitiesList[i];
+					if (temp is Player)
+					{
+						temp.Firing = false;
 					}
 				}
 			}

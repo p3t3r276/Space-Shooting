@@ -10,7 +10,8 @@ namespace SpaceShooting.Entity
 
 		public Player(float x, float y, Handler handler) : base(x, y, handler)
 		{
-			speed = 10.0f;
+			_speed = 10.0f;
+			_size = 32;
 		}
 
 		public override void Update()
@@ -47,7 +48,7 @@ namespace SpaceShooting.Entity
 		{
 			var opp = Game.mousePositionRelativeToForm.X - _position.X;
 			var adj = Game.mousePositionRelativeToForm.Y - _position.Y;
-			rotAngle = (float)Math.Atan2(opp, adj) * Game.Rad2Deg;
+			rotAngle = (float)Math.Atan2(opp, adj) * Game.RadToDeg;
 		}
 
 		public override void Move()

@@ -8,7 +8,7 @@ namespace SpaceShooting.Entity
 	{
 		public Bullet(float x, float y, Handler handler) : base(x, y, handler)
 		{
-			speed = 20.0f;
+			_speed = 20.0f;
 			Move();
 		}
 
@@ -28,7 +28,7 @@ namespace SpaceShooting.Entity
 			for (int i = 0; i < _handler.entitiesList.Count; i++)
 			{
 				Entity temp = _handler.entitiesList[i];
-				if (temp is BasicEnemy)
+				if (temp is Enemy)
 				{
 					if (GetBound().IntersectsWith(temp.GetBound()))
 					{
@@ -49,7 +49,7 @@ namespace SpaceShooting.Entity
 			float diffX = Game.mousePositionRelativeToForm.X - _position.X;
 			float diffY = Game.mousePositionRelativeToForm.Y - _position.Y;
 			float dist = (float)Math.Sqrt(diffX * diffX + diffY * diffY);
-			if (dist <= 50) dist = 50;
+			if (dist >= 200) dist = 200;
 
 			_velocity.X = (1 / dist) * diffX;
 			_velocity.Y = (1 / dist) * diffY;

@@ -26,5 +26,6 @@ namespace SpaceShooting.GameState
 		public abstract void KeyUp(KeyEventArgs e);
 		public abstract void KeyDown(KeyEventArgs e);
 		public abstract void MouseDown(MouseEventArgs e);
+		public abstract void MouseUp(MouseEventArgs e);
 	}
 }

@@ -4,17 +4,11 @@ using System.Drawing;
 
 namespace SpaceShooting.Entity
 {
-	public class BasicEnemy : Enemy
+	public class SmartEnemy : Enemy
 	{
-		public BasicEnemy(float x, float y, Handler handler) : base(x, y, handler)
+		public SmartEnemy(float x, float y, Handler handler) : base(x, y, handler)
 		{
-			_speed = 3.0f;
-		}
-
-		public override void Update()
-		{
-			base.Update();
-			Move();
+			_speed = 5.0f;
 		}
 
 		public override void Collision()
@@ -46,8 +40,7 @@ namespace SpaceShooting.Entity
 
 		public override void Render(Graphics g)
 		{
-			g.FillEllipse(Brushes.Red, _position.X, _position.Y, 16, 16);
-			g.DrawEllipse(Pens.DarkRed, _position.X, _position.Y, 16, 16);
+			g.FillRectangle(Brushes.DarkCyan, Position.X, _position.Y, 16, 16);
 		}
 	}
 }
