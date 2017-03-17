@@ -9,7 +9,7 @@ namespace SpaceShooting.Entity
 		public Bullet(float x, float y, Handler handler) : base(x, y, handler)
 		{
 			_speed = 20.0f;
-			Move();
+			CalculateDirection();
 		}
 
 		public override void Update()
@@ -27,13 +27,13 @@ namespace SpaceShooting.Entity
 		{
 			for (int i = 0; i < _handler.entitiesList.Count; i++)
 			{
-				Entity temp = _handler.entitiesList[i];
-				if (temp is Enemy)
+				Enemy temp = _handler.entitiesList[i] as Enemy;
+				if (temp != null)
 				{
 					if (GetBound().IntersectsWith(temp.GetBound()))
 					{
-						_handler.entitiesList.Remove(temp);
 						_handler.entitiesList.Remove(this);
+						temp.Health--;
 					}
 				}
 			}
@@ -44,7 +44,7 @@ namespace SpaceShooting.Entity
 			return new RectangleF(_position.X, _position.Y, 8, 8);
 		}
 
-		public override void Move()
+		public void CalculateDirection()
 		{
 			float diffX = Game.mousePositionRelativeToForm.X - _position.X;
 			float diffY = Game.mousePositionRelativeToForm.Y - _position.Y;
@@ -53,6 +53,10 @@ namespace SpaceShooting.Entity
 
 			_velocity.X = (1 / dist) * diffX;
 			_velocity.Y = (1 / dist) * diffY;
+		}
+
+		public override void Move()
+		{
 		}
 	}
 }

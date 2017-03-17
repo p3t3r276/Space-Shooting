@@ -22,7 +22,6 @@ namespace SpaceShooting.Entity
 			_position.Y = Game.Clamp(_position.Y, 0, Game.HEIGHT - 32);
 
 			Rotate();
-			Move();
 		}
 
 		public override void Render(Graphics g)
@@ -41,7 +40,7 @@ namespace SpaceShooting.Entity
 
 		public override RectangleF GetBound()
 		{
-			return new RectangleF(_position.X, _position.Y, 32, 32);
+			return new RectangleF(_position.X, _position.Y, _size, _size);
 		}
 
 		public void Rotate()

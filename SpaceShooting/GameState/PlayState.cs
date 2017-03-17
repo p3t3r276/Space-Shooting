@@ -9,7 +9,7 @@ namespace SpaceShooting.GameState
 		public PlayState(GameStateManager gsm, Handler handler) : base(gsm, handler)
 		{
 			_handler.entitiesList.Add(new Player((Game.WIDTH - 16) / 2, (Game.HEIGHT - 16) / 2, _handler));
-			_handler.entitiesList.Add(new BasicEnemy(100, 100, _handler));
+			_handler.entitiesList.Add(new SmartEnemy(100, 100, _handler));
 		}
 
 		public override void KeyUp(KeyEventArgs e)

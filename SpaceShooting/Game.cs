@@ -27,6 +27,7 @@ namespace SpaceShooting
 		private void Form1_Load(object sender, EventArgs e)
 		{
 			Game_Init();
+
 			if (_window.FullScreen == true)
 			{
 				WIDTH = Width;
@@ -58,7 +59,7 @@ namespace SpaceShooting
 			_handler = new Handler();
 			_gsm = new GameStateManager(_handler);
 
-			_window = new WindowManager(WIDTH, HEIGHT, "Space Shooting Game", Color.Black, this, false);
+			_window = new WindowManager(WIDTH, HEIGHT, "Space Shooting Game", Color.Black, this, true);
 		}
 
 		private void Game_KeyDown(object sender, KeyEventArgs e)

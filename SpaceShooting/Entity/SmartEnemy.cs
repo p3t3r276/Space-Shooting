@@ -8,7 +8,9 @@ namespace SpaceShooting.Entity
 	{
 		public SmartEnemy(float x, float y, Handler handler) : base(x, y, handler)
 		{
+			_health = 5;
 			_speed = 5.0f;
+			_size = 40;
 		}
 
 		public override void Collision()
@@ -17,8 +19,7 @@ namespace SpaceShooting.Entity
 
 		public override RectangleF GetBound()
 		{
-			int size = 16;
-			return new RectangleF(_position.X, _position.Y, size, size);
+			return new RectangleF(_position.X, _position.Y, _size, _size);
 		}
 
 		public override void Move()
@@ -40,7 +41,7 @@ namespace SpaceShooting.Entity
 
 		public override void Render(Graphics g)
 		{
-			g.FillRectangle(Brushes.DarkCyan, Position.X, _position.Y, 16, 16);
+			g.FillRectangle(Brushes.DarkCyan, Position.X, _position.Y, _size, _size);
 		}
 	}
 }

@@ -8,13 +8,14 @@ namespace SpaceShooting.Entity
 	{
 		public BasicEnemy(float x, float y, Handler handler) : base(x, y, handler)
 		{
+			_health = 2;
 			_speed = 3.0f;
+			_size = 16;
 		}
 
 		public override void Update()
 		{
 			base.Update();
-			Move();
 		}
 
 		public override void Collision()
@@ -23,8 +24,7 @@ namespace SpaceShooting.Entity
 
 		public override RectangleF GetBound()
 		{
-			int size = 16;
-			return new RectangleF(_position.X, _position.Y, size, size);
+			return new RectangleF(_position.X, _position.Y, _size, _size);
 		}
 
 		public override void Move()
@@ -46,8 +46,7 @@ namespace SpaceShooting.Entity
 
 		public override void Render(Graphics g)
 		{
-			g.FillEllipse(Brushes.Red, _position.X, _position.Y, 16, 16);
-			g.DrawEllipse(Pens.DarkRed, _position.X, _position.Y, 16, 16);
+			g.FillEllipse(Brushes.Red, _position.X, _position.Y, _size, _size);
 		}
 	}
 }

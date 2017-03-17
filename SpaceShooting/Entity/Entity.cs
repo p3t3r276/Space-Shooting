@@ -37,6 +37,7 @@ namespace SpaceShooting.Entity
 			_position.Y += _velocity.Y * _speed;
 
 			Shoot();
+			Move();
 		}
 		public abstract void Render(Graphics g);
 		public abstract void Collision();
