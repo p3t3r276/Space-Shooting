@@ -7,7 +7,7 @@ namespace SpaceShooting.Entity
 	{
 		protected float speed = 0;
 		protected PointF _position, _velocity;
-		protected Handler handler;
+		protected Handler _handler;
 		protected bool _up = false,
 			_down = false,
 			_left = false,
@@ -18,7 +18,7 @@ namespace SpaceShooting.Entity
 
 		public Entity(float x, float y, Handler handler)
 		{
-			this.handler = handler;
+			_handler = handler;
 			_position = new PointF(x, y);
 			_velocity = new PointF(0, 0);
 		}
@@ -35,6 +35,9 @@ namespace SpaceShooting.Entity
 			_position.Y += _velocity.Y * speed;
 		}
 		public abstract void Render(Graphics g);
+		public abstract void Collision();
+		public abstract RectangleF GetBound();
+		public abstract void Move();
 
 		public PointF Position
 		{

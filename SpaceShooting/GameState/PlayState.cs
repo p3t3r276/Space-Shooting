@@ -73,7 +73,7 @@ namespace SpaceShooting.GameState
 					Entity.Entity temp = _handler.entitiesList[i];
 					if (temp is Player)
 					{
-						_handler.entitiesList.Add(new Bullet(temp.Position.X + 12, temp.Position.Y + 36, _handler));
+						_handler.entitiesList.Add(new Bullet(temp.Position.X + 12, temp.Position.Y, _handler));
 					}
 				}
 			}

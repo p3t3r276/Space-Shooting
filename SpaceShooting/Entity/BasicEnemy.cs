@@ -14,10 +14,22 @@ namespace SpaceShooting.Entity
 		public override void Update()
 		{
 			base.Update();
+		}
 
-			for (int i = 0; i < handler.entitiesList.Count; i++)
+		public override void Collision()
+		{
+		}
+
+		public override RectangleF GetBound()
+		{
+			return new RectangleF(_position.X, _position.Y, 16, 16);
+		}
+
+		public override void Move()
+		{
+			for (int i = 0; i < _handler.entitiesList.Count; i++)
 			{
-				Entity target = handler.entitiesList[i];
+				Entity target = _handler.entitiesList[i];
 				if (target is Player)
 				{
 					float diffX = target.Position.X - _position.X;

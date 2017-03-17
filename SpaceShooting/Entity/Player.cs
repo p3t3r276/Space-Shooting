@@ -34,6 +34,15 @@ namespace SpaceShooting.Entity
 			g.ResetTransform();
 		}
 
+		public override void Collision()
+		{
+		}
+
+		public override RectangleF GetBound()
+		{
+			return new RectangleF(_position.X, _position.Y, 32, 32);
+		}
+
 		public void Rotate()
 		{
 			var opp = Game.mousePositionRelativeToForm.X - _position.X;
@@ -41,7 +50,7 @@ namespace SpaceShooting.Entity
 			rotAngle = (float)Math.Atan2(opp, adj) * Game.Rad2Deg;
 		}
 
-		public void Move()
+		public override void Move()
 		{
 			if (_up) _velocity.Y = -1;
 			else if (_down) _velocity.Y = 1;
