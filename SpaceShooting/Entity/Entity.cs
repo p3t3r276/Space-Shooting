@@ -46,15 +46,6 @@ namespace SpaceShooting.Entity
 
 		public virtual void Shoot()
 		{
-			if (_firing)
-			{
-				int elapsed = Environment.TickCount - _firingTimer;
-				if (elapsed > _firingTimerDelay)
-				{
-					_firingTimer = Environment.TickCount;
-					_handler.entitiesList.Add(new Bullet(_position.X + _size / 2, _position.Y + _size / 2, _handler));
-				}
-			}
 		}
 
 		public PointF Position

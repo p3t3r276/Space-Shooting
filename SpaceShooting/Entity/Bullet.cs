@@ -20,7 +20,7 @@ namespace SpaceShooting.Entity
 
 		public override void Render(Graphics g)
 		{
-			g.FillRectangle(Brushes.Yellow, _position.X, _position.Y, 8, 8);
+			g.FillEllipse(Brushes.Yellow, _position.X, _position.Y, 8, 8);
 		}
 
 		public override void Collision()

@@ -22,7 +22,6 @@ namespace SpaceShooting.Manager
 			_handler = new Handler();
 			gameStates = new GameState.GameState[NUM_STATES];
 			SetState(PLAY);
-
 		}
 
 		public void SetState(int i)
