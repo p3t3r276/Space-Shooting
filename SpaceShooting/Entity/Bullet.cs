@@ -34,6 +34,7 @@ namespace SpaceShooting.Entity
 					{
 						_handler.entitiesList.Remove(this);
 						temp.Health--;
+						temp.Hitted = true;
 					}
 				}
 			}

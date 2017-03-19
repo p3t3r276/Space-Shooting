@@ -26,7 +26,7 @@ namespace SpaceShooting
 
 		private void Form1_Load(object sender, EventArgs e)
 		{
-			Game_Init();
+			GameInit();
 
 			if (_window.FullScreen == true)
 			{
@@ -47,7 +47,7 @@ namespace SpaceShooting
 			_gsm.Render(_g);
 		}
 
-		private void Game_Init()
+		private void GameInit()
 		{
 			_timer = new Timer
 			{

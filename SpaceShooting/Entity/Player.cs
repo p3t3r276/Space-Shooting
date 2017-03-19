@@ -17,7 +17,7 @@ namespace SpaceShooting.Entity
 			_size = 32;
 
 			_recovering = false;
-			_recoveringTimer = 0;
+			_recoveringTimer = Environment.TickCount;
 		}
 
 		public override void Update()
@@ -29,6 +29,7 @@ namespace SpaceShooting.Entity
 
 			Rotate();
 			Recover();
+			Collision();
 		}
 
 		public override void Render(Graphics g)
@@ -50,6 +51,21 @@ namespace SpaceShooting.Entity
 
 		public override void Collision()
 		{
+			if (!_recovering)
+			{
+				for (int i = 0; i < _handler.entitiesList.Count; i++)
+				{
+					Enemy temp = _handler.entitiesList[i] as Enemy;
+					if (temp != null)
+					{
+						if (GetBound().IntersectsWith(temp.GetBound()))
+						{
+							HUD.HUD.HEALTH--;
+							_recovering = true;
+						}
+					}
+				}
+			}
 		}
 
 		public override RectangleF GetBound()
@@ -79,11 +95,15 @@ namespace SpaceShooting.Entity
 		{
 			if (_firing)
 			{
-				int elapsed = Environment.TickCount - _firingTimer;
-				if (elapsed > _firingTimerDelay)
+				if (HUD.HUD.AMMO > 0)
 				{
-					_firingTimer = Environment.TickCount;
-					_handler.entitiesList.Add(new Bullet(_position.X + _size / 2, _position.Y + _size / 2, _handler));
+					int elapsed = Environment.TickCount - _firingTimer;
+					if (elapsed > _firingTimerDelay)
+					{
+						_firingTimer = Environment.TickCount;
+						_handler.entitiesList.Add(new Bullet(_position.X + _size / 2, _position.Y + _size / 2, _handler));
+						HUD.HUD.AMMO--;
+					}
 				}
 			}
 		}
@@ -92,11 +112,11 @@ namespace SpaceShooting.Entity
 		{
 			if (_recovering)
 			{
-				int elapsed = (Environment.TickCount - _recoveringTimer) / 1000000;
-				if (elapsed > 2000)
+				int elapsed = (Environment.TickCount - _recoveringTimer);
+				if (elapsed > 4000)
 				{
 					_recovering = false;
-					_recoveringTimer = 0;
+					_recoveringTimer = Environment.TickCount;
 				}
 			}
 		}

@@ -1,19 +1,35 @@
 ﻿using SpaceShooting.Manager;
+using System;
 
 namespace SpaceShooting.Entity
 {
 	public abstract class Enemy : Entity
 	{
 		protected int _health;
+		protected bool _hit;
+		protected int _hitTimer;
 
 		public Enemy(float x, float y, Handler handler) : base(x, y, handler)
 		{
 			_health = 0;
+			_hit = false;
+			_hitTimer = 0;
 		}
 
 		public override void Update()
 		{
 			base.Update();
+
+			if (_hit)
+			{
+				int eslapsed = Environment.TickCount - _hitTimer;
+				if (eslapsed > 50)
+				{
+					_hit = false;
+					_hitTimer = 0;
+				}
+			}
+
 			Die();
 		}
 
@@ -29,7 +45,14 @@ namespace SpaceShooting.Entity
 			{
 				_handler.entitiesList.Remove(this);
 				_handler.entitiesList.Add(new Explosion(_position.X, _position.Y, _handler, _size, _size + 20));
+				HUD.HUD.COINS++;
 			}
+		}
+
+		public bool Hitted
+		{
+			get { return _hit; }
+			set { _hit = value; }
 		}
 	}
 }

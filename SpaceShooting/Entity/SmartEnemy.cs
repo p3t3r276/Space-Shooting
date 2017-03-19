@@ -41,7 +41,14 @@ namespace SpaceShooting.Entity
 
 		public override void Render(Graphics g)
 		{
-			g.FillRectangle(Brushes.DarkCyan, Position.X, _position.Y, _size, _size);
+			if (_hit)
+			{
+				g.FillEllipse(Brushes.White, Position.X, _position.Y, _size, _size);
+			}
+			else
+			{
+				g.FillEllipse(Brushes.DarkCyan, Position.X, _position.Y, _size, _size);
+			}
 		}
 	}
 }

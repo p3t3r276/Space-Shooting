@@ -15,11 +15,11 @@ namespace SpaceShooting.GameState
 			_handler = handler;
 		}
 
-		public void Render(Graphics g)
+		public virtual void Render(Graphics g)
 		{
 			_handler.Render(g);
 		}
-		public void Update()
+		public virtual void Update()
 		{
 			_handler.Update();
 		}

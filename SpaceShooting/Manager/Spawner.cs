@@ -16,6 +16,8 @@ namespace SpaceShooting.Manager
 		private float _x;
 		private float _y;
 
+		private Random _rand = new Random();
+
 		public Spawner(float x, float y, Handler handler)
 		{
 			_handler = handler;
@@ -32,7 +34,8 @@ namespace SpaceShooting.Manager
 
 		public void Update()
 		{
-			// check if there is any enemy on the screen
+			_enemyCount = 0;
+
 			for (int i = 0; i < _handler.entitiesList.Count; i++)
 			{
 				Enemy temp = _handler.entitiesList[i] as Enemy;
@@ -57,28 +60,39 @@ namespace SpaceShooting.Manager
 					waveStartTimer = 0;
 					waveStartTimerDiff = 0;
 				}
+			}
 
+			if (waveStart && _enemyCount == 0)
+			{
+				CreateNewEnemies();
 			}
 		}
 
 		private void CreateNewEnemies()
 		{
-			//remove all enemy
-			for (int i = 0; i < _handler.entitiesList.Count; i++)
-			{
-				Enemy temp = _handler.entitiesList[i] as Enemy;
-				if (temp != null)
-				{
-					_handler.entitiesList.Remove(temp);
-				}
-			}
+			//if (waveNumber == 1)
+			//{
+			//	_handler.entitiesList.Add(new BasicEnemy(_x, _y, _handler, _rand));
+			//	_handler.entitiesList.Add(new BasicEnemy(_x, _y, _handler, _rand));
+			//}
+
+			//if (waveNumber == 2)
+			//{
+			//	_handler.entitiesList.Add(new BasicEnemy(_x, _y, _handler, _rand));
+			//	_handler.entitiesList.Add(new BasicEnemy(_x, _y, _handler, _rand));
+			//	_handler.entitiesList.Add(new BasicEnemy(_x, _y, _handler, _rand));
+			//	_handler.entitiesList.Add(new BasicEnemy(_x, _y, _handler, _rand));
+			//}
+
+			//if (waveNumber == 3)
+			//{
+			//	_handler.entitiesList.Add(new BasicEnemy(_x, _y, _handler, _rand));
+			//	_handler.entitiesList.Add(new SmartEnemy(_x, _y, _handler));
+			//}
 
 			if (waveNumber == 1)
 			{
-				_handler.entitiesList.Add(new BasicEnemy(_x, _y, _handler));
-				_handler.entitiesList.Add(new BasicEnemy(_x, _y, _handler));
-				_handler.entitiesList.Add(new BasicEnemy(_x, _y, _handler));
-				_handler.entitiesList.Add(new BasicEnemy(_x, _y, _handler));
+				_handler.entitiesList.Add(new SmartEnemy(_x, _y, _handler));
 			}
 		}
 	}

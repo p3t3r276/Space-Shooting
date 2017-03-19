@@ -1,16 +1,36 @@
 ﻿using SpaceShooting.Entity;
 using SpaceShooting.Manager;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace SpaceShooting.GameState
 {
 	public class PlayState : GameState
 	{
+		private Spawner _spawner1;
+		private HUD.HUD hud;
+
 		public PlayState(GameStateManager gsm, Handler handler) : base(gsm, handler)
 		{
 			_handler.entitiesList.Add(new Player((Game.WIDTH - 16) / 2, (Game.HEIGHT - 16) / 2, _handler));
-			_handler.entitiesList.Add(new SmartEnemy(100, 100, _handler));
-			_handler.entitiesList.Add(new BasicEnemy(150, 150, _handler));
+
+			_spawner1 = new Spawner(100, 32, _handler);
+
+			hud = new HUD.HUD(_handler);
+		}
+
+		public override void Update()
+		{
+			base.Update();
+
+			_spawner1.Update();
+			hud.Update();
+		}
+
+		public override void Render(Graphics g)
+		{
+			base.Render(g);
+			hud.Render(g);
 		}
 
 		public override void KeyUp(KeyEventArgs e)
