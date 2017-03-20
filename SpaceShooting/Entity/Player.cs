@@ -39,11 +39,11 @@ namespace SpaceShooting.Entity
 			g.TranslateTransform(-(_position.X + 16), -(_position.Y + 16));
 			if (_recovering)
 			{
-				g.FillRectangle(Brushes.DeepPink, _position.X, _position.Y, 32, 32);
+				g.FillEllipse(Brushes.DeepPink, _position.X, _position.Y, 32, 32);
 			}
 			else
 			{
-				g.FillRectangle(Brushes.White, _position.X, _position.Y, 32, 32);
+				g.FillEllipse(Brushes.White, _position.X, _position.Y, 32, 32);
 			}
 			g.FillRectangle(Brushes.Orange, _position.X + 12, _position.Y + 36, 8, 8);
 			g.ResetTransform();
@@ -75,6 +75,7 @@ namespace SpaceShooting.Entity
 
 		public void Rotate()
 		{
+			//Tinh góc quay theo vik trí chuột
 			var opp = Game.mousePositionRelativeToForm.X - _position.X;
 			var adj = Game.mousePositionRelativeToForm.Y - _position.Y;
 			rotAngle = (float)Math.Atan2(opp, adj) * Game.RadToDeg;
@@ -95,10 +96,10 @@ namespace SpaceShooting.Entity
 		{
 			if (_firing)
 			{
+				// Chỉ bắn khi còn đạn
 				if (HUD.HUD.AMMO > 0)
 				{
-					int elapsed = Environment.TickCount - _firingTimer;
-					if (elapsed > _firingTimerDelay)
+					if (Environment.TickCount > _firingTimerDelay + _firingTimer)
 					{
 						_firingTimer = Environment.TickCount;
 						_handler.entitiesList.Add(new Bullet(_position.X + _size / 2, _position.Y + _size / 2, _handler));

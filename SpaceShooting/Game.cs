@@ -18,6 +18,7 @@ namespace SpaceShooting
 		public static int HEIGHT = 600;
 		public static Point mousePositionRelativeToForm;
 		public const float RadToDeg = 180f / (float)Math.PI;
+		public static Game mainForm;
 
 		public Game()
 		{
@@ -49,6 +50,7 @@ namespace SpaceShooting
 
 		private void GameInit()
 		{
+			mainForm = this;
 			_timer = new Timer
 			{
 				Interval = 20,

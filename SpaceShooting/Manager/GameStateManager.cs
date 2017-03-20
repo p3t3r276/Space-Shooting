@@ -21,7 +21,7 @@ namespace SpaceShooting.Manager
 		{
 			_handler = new Handler();
 			gameStates = new GameState.GameState[NUM_STATES];
-			SetState(PLAY);
+			SetState(MENU);
 		}
 
 		public void SetState(int i)
@@ -35,6 +35,7 @@ namespace SpaceShooting.Manager
 			}
 			else if (i == MENU)
 			{
+				gameStates[i] = new MenuState(this, _handler);
 			}
 			else if (i == PLAY)
 			{

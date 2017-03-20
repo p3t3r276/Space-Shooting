@@ -24,6 +24,7 @@ namespace SpaceShooting.Entity
 
 		public override void Move()
 		{
+			// áp sát Player
 			for (int i = 0; i < _handler.entitiesList.Count; i++)
 			{
 				Entity target = _handler.entitiesList[i];

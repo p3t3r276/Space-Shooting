@@ -34,8 +34,10 @@ namespace SpaceShooting.Manager
 
 		public void Update()
 		{
+			//Refresh counter
 			_enemyCount = 0;
 
+			//count enemy on the screen
 			for (int i = 0; i < _handler.entitiesList.Count; i++)
 			{
 				Enemy temp = _handler.entitiesList[i] as Enemy;
