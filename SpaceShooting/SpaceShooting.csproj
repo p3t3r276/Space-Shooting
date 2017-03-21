@@ -68,6 +68,8 @@
     <Compile Include="Manager\GameStateManager.cs" />
     <Compile Include="Manager\Handler.cs" />
     <Compile Include="Manager\Spawner.cs" />
+    <Compile Include="Manager\SpawnPoint.cs" />
+    <Compile Include="Manager\Wave.cs" />
     <Compile Include="Manager\WindowManager.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

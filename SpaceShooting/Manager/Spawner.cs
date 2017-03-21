@@ -5,92 +5,92 @@ namespace SpaceShooting.Manager
 {
 	public class Spawner
 	{
-		private int waveStartTimer;
-		private int waveStartTimerDiff;
-		private int waveNumber;
-		private int waveDelay = 1500;
-		private bool waveStart;
-		private int _enemyCount;
-
 		private Handler _handler;
-		private float _x;
-		private float _y;
+		private Random _rand;
 
-		private Random _rand = new Random();
+		Wave[] waves;
 
-		public Spawner(float x, float y, Handler handler)
+		Wave currentWave;
+		int currentWaveNumber;
+
+		private SpawnPoint[] _spawnPoints;
+
+		private int enemiesRemainingToSpawn;
+		private int enemiesRemainingAlive;
+		private float nextSpawnTime;
+
+		public Spawner(Handler handler, SpawnPoint[] spawnPoints)
 		{
 			_handler = handler;
-			_x = x;
-			_y = y;
+			_spawnPoints = spawnPoints;
 
-			waveStartTimer = 0;
-			waveStartTimerDiff = 0;
-			waveStart = true;
-			waveNumber = 0;
+			_rand = new Random();
 
-			_enemyCount = 0;
+			//define the waves
+			waves = new Wave[2];
+			waves[0] = new Wave()
+			{
+				enemyCount = 1,
+				timeBetweenSpawn = 1
+			};
+
+			waves[1] = new Wave()
+			{
+				enemyCount = 10,
+				timeBetweenSpawn = .75f
+			};
+
+			NextWave();
 		}
 
 		public void Update()
 		{
-			//Refresh counter
-			_enemyCount = 0;
 
-			//count enemy on the screen
+
+			if (enemiesRemainingToSpawn >= 0 && Environment.TickCount > nextSpawnTime)
+			{
+				enemiesRemainingToSpawn--;
+				nextSpawnTime = Environment.TickCount + currentWave.timeBetweenSpawn * 1000;
+
+				//spawn enemy
+				SpawnPoint spawnPoint = _spawnPoints[_rand.Next(0, _spawnPoints.Length)];
+				_handler.entitiesList.Add(new BasicEnemy(spawnPoint.X, spawnPoint.Y, _handler));
+			}
+
+			CountEnemyRemainingAlive();
+			if (enemiesRemainingAlive == 0)
+			{
+				NextWave();
+			}
+		}
+
+		private void NextWave()
+		{
+			currentWaveNumber++;
+			if (currentWaveNumber - 1 < waves.Length)
+			{
+				currentWave = waves[currentWaveNumber - 1];
+
+				enemiesRemainingToSpawn = currentWave.enemyCount - 1;
+				enemiesRemainingAlive = enemiesRemainingToSpawn;
+			}
+		}
+
+		//Kiểm tra số Enemy hiện có
+		private int CountEnemyRemainingAlive()
+		{
+			//Reset bộ đếm
+			enemiesRemainingAlive = 0;
+
 			for (int i = 0; i < _handler.entitiesList.Count; i++)
 			{
 				Enemy temp = _handler.entitiesList[i] as Enemy;
 				if (temp != null)
 				{
-					_enemyCount++;
+					enemiesRemainingAlive++;
 				}
 			}
-
-			if (waveStartTimer == 0 && _enemyCount == 0)
-			{
-				waveNumber++;
-				waveStart = false;
-				waveStartTimer = Environment.TickCount;
-			}
-			else
-			{
-				waveStartTimerDiff = (Environment.TickCount - waveStartTimer);
-				if (waveStartTimerDiff > waveDelay)
-				{
-					waveStart = true;
-					waveStartTimer = 0;
-					waveStartTimerDiff = 0;
-				}
-			}
-
-			if (waveStart && _enemyCount == 0)
-			{
-				CreateNewEnemies();
-			}
-		}
-
-		private void CreateNewEnemies()
-		{
-			if (waveNumber == 1)
-			{
-				_handler.entitiesList.Add(new BasicEnemy(_x, _y, _handler, _rand));
-				_handler.entitiesList.Add(new BasicEnemy(_x, _y, _handler, _rand));
-			}
-
-			if (waveNumber == 2)
-			{
-				_handler.entitiesList.Add(new BasicEnemy(_x, _y, _handler, _rand));
-				_handler.entitiesList.Add(new BasicEnemy(_x, _y, _handler, _rand));
-				_handler.entitiesList.Add(new BasicEnemy(_x, _y, _handler, _rand));
-				_handler.entitiesList.Add(new BasicEnemy(_x, _y, _handler, _rand));
-			}
-
-			if (waveNumber == 3)
-			{
-				_handler.entitiesList.Add(new BasicEnemy(_x, _y, _handler, _rand));
-				_handler.entitiesList.Add(new SmartEnemy(_x, _y, _handler));
-			}
+			return enemiesRemainingAlive;
 		}
 	}
 }
