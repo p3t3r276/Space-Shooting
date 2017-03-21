@@ -3,12 +3,12 @@ using SpaceShooting.Manager;
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace SpaceShooting.GameState
+namespace SpaceShooting.GameStates
 {
 	public class PlayState : GameState
 	{
 		private Spawner _spawner1;
-		private HUD.HUD hud;
+		private HUD.Hud hud;
 
 		public PlayState(GameStateManager gsm, Handler handler) : base(gsm, handler)
 		{
@@ -16,7 +16,7 @@ namespace SpaceShooting.GameState
 
 			_spawner1 = new Spawner(100, 32, _handler);
 
-			hud = new HUD.HUD(_handler);
+			hud = new HUD.Hud(_handler);
 		}
 
 		public override void Update()
@@ -61,6 +61,12 @@ namespace SpaceShooting.GameState
 
 		public override void KeyDown(KeyEventArgs e)
 		{
+			if (e.KeyCode == Keys.Escape)
+			{
+				_handler.entitiesList.Clear();
+				_gsm.SetState(GameStateManager.MENU);
+			}
+
 			for (int i = 0; i < _handler.entitiesList.Count; i++)
 			{
 				Entity.Entity player = _handler.entitiesList[i];

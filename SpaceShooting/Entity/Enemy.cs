@@ -1,4 +1,5 @@
-﻿using SpaceShooting.Manager;
+﻿using SpaceShooting.HUD;
+using SpaceShooting.Manager;
 using System;
 
 namespace SpaceShooting.Entity
@@ -29,7 +30,6 @@ namespace SpaceShooting.Entity
 					_hitTimer = 0;
 				}
 			}
-
 			Die();
 		}
 
@@ -45,7 +45,7 @@ namespace SpaceShooting.Entity
 			{
 				_handler.entitiesList.Remove(this);
 				_handler.entitiesList.Add(new Explosion(_position.X, _position.Y, _handler, _size, _size + 20));
-				HUD.HUD.COINS++;
+				Hud.COINS++;
 			}
 		}
 

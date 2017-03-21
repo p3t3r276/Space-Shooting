@@ -61,10 +61,10 @@
     <Compile Include="Game.Designer.cs">
       <DependentUpon>Game.cs</DependentUpon>
     </Compile>
-    <Compile Include="GameState\GameState.cs" />
-    <Compile Include="GameState\MenuState.cs" />
-    <Compile Include="GameState\PlayState.cs" />
-    <Compile Include="HUD\HUD.cs" />
+    <Compile Include="GameStates\GameState.cs" />
+    <Compile Include="GameStates\MenuState.cs" />
+    <Compile Include="GameStates\PlayState.cs" />
+    <Compile Include="HUD\Hud.cs" />
     <Compile Include="Manager\GameStateManager.cs" />
     <Compile Include="Manager\Handler.cs" />
     <Compile Include="Manager\Spawner.cs" />

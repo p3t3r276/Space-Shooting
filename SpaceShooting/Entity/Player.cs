@@ -1,4 +1,5 @@
-﻿using SpaceShooting.Manager;
+﻿using SpaceShooting.HUD;
+using SpaceShooting.Manager;
 using System;
 using System.Drawing;
 
@@ -60,7 +61,7 @@ namespace SpaceShooting.Entity
 					{
 						if (GetBound().IntersectsWith(temp.GetBound()))
 						{
-							HUD.HUD.HEALTH--;
+							Hud.HEALTH--;
 							_recovering = true;
 						}
 					}
@@ -92,18 +93,18 @@ namespace SpaceShooting.Entity
 			if (!_left && !_right) _velocity.X = 0;
 		}
 
-		public override void Shoot()
+		public override void Attack()
 		{
 			if (_firing)
 			{
 				// Chỉ bắn khi còn đạn
-				if (HUD.HUD.AMMO > 0)
+				if (HUD.Hud.AMMO > 0)
 				{
 					if (Environment.TickCount > _firingTimerDelay + _firingTimer)
 					{
 						_firingTimer = Environment.TickCount;
 						_handler.entitiesList.Add(new Bullet(_position.X + _size / 2, _position.Y + _size / 2, _handler));
-						HUD.HUD.AMMO--;
+						Hud.AMMO--;
 					}
 				}
 			}

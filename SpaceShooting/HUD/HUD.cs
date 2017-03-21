@@ -3,14 +3,14 @@ using System.Drawing;
 
 namespace SpaceShooting.HUD
 {
-	public class HUD
+	public class Hud
 	{
 		Handler _handler;
 		public static int HEALTH = 10;
 		public static int AMMO = 100;
 		public static int COINS = 0;
 
-		public HUD(Handler handler)
+		public Hud(Handler handler)
 		{
 			_handler = handler;
 		}

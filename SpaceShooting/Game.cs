@@ -66,11 +66,6 @@ namespace SpaceShooting
 
 		private void Game_KeyDown(object sender, KeyEventArgs e)
 		{
-			switch (e.KeyCode)
-			{
-				case Keys.Escape: Application.Exit(); break;
-			}
-
 			_gsm.KeyDown(e);
 		}
 

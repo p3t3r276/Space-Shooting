@@ -72,28 +72,23 @@ namespace SpaceShooting.Manager
 
 		private void CreateNewEnemies()
 		{
-			//if (waveNumber == 1)
-			//{
-			//	_handler.entitiesList.Add(new BasicEnemy(_x, _y, _handler, _rand));
-			//	_handler.entitiesList.Add(new BasicEnemy(_x, _y, _handler, _rand));
-			//}
-
-			//if (waveNumber == 2)
-			//{
-			//	_handler.entitiesList.Add(new BasicEnemy(_x, _y, _handler, _rand));
-			//	_handler.entitiesList.Add(new BasicEnemy(_x, _y, _handler, _rand));
-			//	_handler.entitiesList.Add(new BasicEnemy(_x, _y, _handler, _rand));
-			//	_handler.entitiesList.Add(new BasicEnemy(_x, _y, _handler, _rand));
-			//}
-
-			//if (waveNumber == 3)
-			//{
-			//	_handler.entitiesList.Add(new BasicEnemy(_x, _y, _handler, _rand));
-			//	_handler.entitiesList.Add(new SmartEnemy(_x, _y, _handler));
-			//}
-
 			if (waveNumber == 1)
 			{
+				_handler.entitiesList.Add(new BasicEnemy(_x, _y, _handler, _rand));
+				_handler.entitiesList.Add(new BasicEnemy(_x, _y, _handler, _rand));
+			}
+
+			if (waveNumber == 2)
+			{
+				_handler.entitiesList.Add(new BasicEnemy(_x, _y, _handler, _rand));
+				_handler.entitiesList.Add(new BasicEnemy(_x, _y, _handler, _rand));
+				_handler.entitiesList.Add(new BasicEnemy(_x, _y, _handler, _rand));
+				_handler.entitiesList.Add(new BasicEnemy(_x, _y, _handler, _rand));
+			}
+
+			if (waveNumber == 3)
+			{
+				_handler.entitiesList.Add(new BasicEnemy(_x, _y, _handler, _rand));
 				_handler.entitiesList.Add(new SmartEnemy(_x, _y, _handler));
 			}
 		}

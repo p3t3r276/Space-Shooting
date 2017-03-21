@@ -2,7 +2,7 @@
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace SpaceShooting.GameState
+namespace SpaceShooting.GameStates
 {
 	public class MenuState : GameState
 	{
@@ -13,23 +13,28 @@ namespace SpaceShooting.GameState
 			lbl = new Label()
 			{
 				Text = "Hello",
-				Size = new Size(100, 150),
 				ForeColor = Color.White,
-				Left = 100,
-				Top = 150,
-				Font = new Font("Arial", 20, FontStyle.Bold)
+				Size = new Size(100, 100),
+				Font = new Font("Arial", 20f, FontStyle.Bold, GraphicsUnit.Pixel),
+				Left = 50,
+				Top = 50
 			};
+
+			Game.mainForm.Controls.Add(lbl);
 		}
 
 		public override void Render(Graphics g)
 		{
 			base.Render(g);
-
-			Game.mainForm.Controls.Add(lbl);
 		}
 
 		public override void KeyDown(KeyEventArgs e)
 		{
+			if (e.KeyCode == Keys.Enter)
+			{
+				Game.mainForm.Controls.Clear();
+				_gsm.SetState(GameStateManager.PLAY);
+			}
 		}
 
 		public override void KeyUp(KeyEventArgs e)

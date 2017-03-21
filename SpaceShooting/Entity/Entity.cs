@@ -36,7 +36,7 @@ namespace SpaceShooting.Entity
 			_position.X += _velocity.X * _speed;
 			_position.Y += _velocity.Y * _speed;
 
-			Shoot();
+			Attack();
 			Move();
 		}
 		public abstract void Render(Graphics g);
@@ -44,8 +44,9 @@ namespace SpaceShooting.Entity
 		public abstract RectangleF GetBound();
 		public abstract void Move();
 
-		public virtual void Shoot()
+		public virtual void Attack()
 		{
+			return;
 		}
 
 		public PointF Position

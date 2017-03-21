@@ -2,7 +2,7 @@
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace SpaceShooting.GameState
+namespace SpaceShooting.GameStates
 {
 	public abstract class GameState
 	{

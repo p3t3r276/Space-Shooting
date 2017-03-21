@@ -1,4 +1,4 @@
-﻿using SpaceShooting.GameState;
+﻿using SpaceShooting.GameStates;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -6,7 +6,7 @@ namespace SpaceShooting.Manager
 {
 	public class GameStateManager
 	{
-		private GameState.GameState[] gameStates;
+		private GameState[] gameStates;
 		private int currentState;
 		private int previousState;
 		private Handler _handler;
@@ -20,8 +20,8 @@ namespace SpaceShooting.Manager
 		public GameStateManager(Handler handler)
 		{
 			_handler = new Handler();
-			gameStates = new GameState.GameState[NUM_STATES];
-			SetState(MENU);
+			gameStates = new GameState[NUM_STATES];
+			SetState(PLAY);
 		}
 
 		public void SetState(int i)
