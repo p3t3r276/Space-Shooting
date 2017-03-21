@@ -1,4 +1,5 @@
 ﻿using SpaceShooting.Entity;
+using SpaceShooting.HUD;
 using SpaceShooting.Manager;
 using System.Drawing;
 using System.Windows.Forms;
@@ -7,30 +8,37 @@ namespace SpaceShooting.GameStates
 {
 	public class PlayState : GameState
 	{
-		private Spawner _spawner1;
-		private HUD.Hud hud;
+		private Spawner _spawner;
+		private Hud _hud;
+		private SpawnPoint[] _spawnPoints;
 
 		public PlayState(GameStateManager gsm, Handler handler) : base(gsm, handler)
 		{
 			_handler.entitiesList.Add(new Player((Game.WIDTH - 16) / 2, (Game.HEIGHT - 16) / 2, _handler));
 
-			_spawner1 = new Spawner(100, 32, _handler);
+			_hud = new Hud(_handler);
 
-			hud = new HUD.Hud(_handler);
+			_spawnPoints = new SpawnPoint[3];
+
+			_spawnPoints[0] = new SpawnPoint(10, 10);
+			_spawnPoints[1] = new SpawnPoint(Game.WIDTH, Game.HEIGHT);
+			_spawnPoints[2] = new SpawnPoint(Game.WIDTH / 2, Game.HEIGHT);
+
+			_spawner = new Spawner(_handler, _spawnPoints);
 		}
 
 		public override void Update()
 		{
 			base.Update();
 
-			_spawner1.Update();
-			hud.Update();
+			_spawner.Update();
+			_hud.Update();
 		}
 
 		public override void Render(Graphics g)
 		{
 			base.Render(g);
-			hud.Render(g);
+			_hud.Render(g);
 		}
 
 		public override void KeyUp(KeyEventArgs e)

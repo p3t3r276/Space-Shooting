@@ -12,16 +12,16 @@ namespace SpaceShooting.Manager
 		private Handler _handler;
 
 		public const int NUM_STATES = 4;
-		public const int INTRO = 0;
-		public const int MENU = 1;
-		public const int PLAY = 2;
-		public const int GAMEOVER = 3;
+		public const int MENU = 0;
+		public const int PLAY = 1;
+		public const int GAMEOVER = 2;
+		public const int GAMEFINISH = 3;
 
 		public GameStateManager(Handler handler)
 		{
 			_handler = new Handler();
 			gameStates = new GameState[NUM_STATES];
-			SetState(PLAY);
+			SetState(MENU);
 		}
 
 		public void SetState(int i)
@@ -30,10 +30,7 @@ namespace SpaceShooting.Manager
 			UnloadState(previousState);
 			currentState = i;
 
-			if (i == INTRO)
-			{
-			}
-			else if (i == MENU)
+			if (i == MENU)
 			{
 				gameStates[i] = new MenuState(this, _handler);
 			}
@@ -43,6 +40,10 @@ namespace SpaceShooting.Manager
 			}
 			else if (i == GAMEOVER)
 			{
+			}
+			else if (i == GAMEFINISH)
+			{
+
 			}
 		}
 

@@ -6,20 +6,11 @@ namespace SpaceShooting.Entity
 {
 	public class BasicEnemy : Enemy
 	{
-		private Random _rand;
-		private double rad;
-
-		public BasicEnemy(float x, float y, Handler handler, Random random) : base(x, y, handler)
+		public BasicEnemy(float x, float y, Handler handler) : base(x, y, handler)
 		{
 			_health = 2;
-			_speed = 8.0f;
-			_size = 16;
-			_rand = random;
-
-			double angle = _rand.NextDouble() * 140 + 20;
-			rad = angle * Math.PI / 180;
-			_velocity.X = (float)Math.Cos(rad);
-			_velocity.Y = (float)Math.Sin(rad);
+			_speed = 6.0f;
+			_size = 20;
 		}
 
 		public override void Update()
@@ -38,14 +29,19 @@ namespace SpaceShooting.Entity
 
 		public override void Move()
 		{
-			if (_position.X <= 0 || _position.X >= Game.WIDTH - 16)
+			// áp sát Player
+			for (int i = 0; i < _handler.entitiesList.Count; i++)
 			{
-				_velocity.X = -_velocity.X;
-			}
+				Entity target = _handler.entitiesList[i];
+				if (target is Player)
+				{
+					float diffX = target.Position.X - _position.X;
+					float diffY = target.Position.Y - _position.Y;
+					float dist = (float)Math.Sqrt(diffX * diffX + diffY * diffY);
 
-			if (_position.Y <= 0 || _position.Y >= Game.HEIGHT - 16)
-			{
-				_velocity.Y = -_velocity.Y;
+					_velocity.X = (1 / dist) * diffX;
+					_velocity.Y = (1 / dist) * diffY;
+				}
 			}
 		}
 
@@ -57,7 +53,7 @@ namespace SpaceShooting.Entity
 			}
 			else
 			{
-				g.FillEllipse(Brushes.Red, _position.X, _position.Y, _size, _size);
+				g.FillEllipse(Brushes.ForestGreen, _position.X, _position.Y, _size, _size);
 			}
 		}
 	}
