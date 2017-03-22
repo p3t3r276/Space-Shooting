@@ -11,6 +11,7 @@ namespace SpaceShooting.Entity
 			_health = 2;
 			_speed = 6.0f;
 			_size = 20;
+			_coins = 5;
 		}
 
 		public override void Update()

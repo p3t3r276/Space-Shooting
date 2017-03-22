@@ -7,6 +7,7 @@ namespace SpaceShooting.Entity
 	public abstract class Enemy : Entity
 	{
 		protected int _health;
+		protected int _coins;
 		protected bool _hit;
 		protected int _hitTimer;
 
@@ -15,6 +16,7 @@ namespace SpaceShooting.Entity
 			_health = 0;
 			_hit = false;
 			_hitTimer = 0;
+			_coins = 0;
 		}
 
 		public override void Update()
@@ -48,7 +50,7 @@ namespace SpaceShooting.Entity
 		{
 			_handler.entitiesList.Remove(this);
 			_handler.entitiesList.Add(new Explosion(_position.X, _position.Y, _handler, _size, _size + 20));
-			Hud.COINS++;
+			Hud.COINS += _coins;
 		}
 
 		public bool Hitted

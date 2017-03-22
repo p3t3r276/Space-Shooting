@@ -16,7 +16,7 @@ namespace SpaceShooting.GameStates
 		{
 			_handler.entitiesList.Add(new Player((Game.WIDTH - 16) / 2, (Game.HEIGHT - 16) / 2, _handler));
 
-			_hud = new Hud(_handler);
+			_hud = new Hud();
 
 			_spawnPoints = new SpawnPoint[3];
 
@@ -45,8 +45,8 @@ namespace SpaceShooting.GameStates
 		{
 			for (int i = 0; i < _handler.entitiesList.Count; i++)
 			{
-				Entity.Entity player = _handler.entitiesList[i];
-				if (player is Player)
+				Player player = _handler.entitiesList[i] as Player;
+				if (player != null)
 				{
 					switch (e.KeyCode)
 					{
@@ -69,10 +69,9 @@ namespace SpaceShooting.GameStates
 
 		public override void KeyDown(KeyEventArgs e)
 		{
-			if (e.KeyCode == Keys.Escape)
+			if (e.KeyCode == Keys.Space)
 			{
-				_handler.entitiesList.Clear();
-				_gsm.SetState(GameStateManager.MENU);
+				_gsm.Paused = true;
 			}
 
 			for (int i = 0; i < _handler.entitiesList.Count; i++)

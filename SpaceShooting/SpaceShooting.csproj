@@ -63,6 +63,7 @@
     </Compile>
     <Compile Include="GameStates\GameState.cs" />
     <Compile Include="GameStates\MenuState.cs" />
+    <Compile Include="GameStates\PauseState.cs" />
     <Compile Include="GameStates\PlayState.cs" />
     <Compile Include="HUD\Hud.cs" />
     <Compile Include="Manager\GameStateManager.cs" />
