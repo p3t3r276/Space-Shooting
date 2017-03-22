@@ -13,13 +13,13 @@ namespace SpaceShooting.GameStates
 		public GameFinishState(GameStateManager gsm, Handler handler) : base(gsm, handler)
 		{
 			lbls = new Label[3];
-			Font fnt = new Font("Arial", 50f, FontStyle.Bold, GraphicsUnit.Pixel);
+			Font fnt = new Font("Arial", 55f, FontStyle.Bold, GraphicsUnit.Pixel);
 			int top = 250;
 
 			lbls[0] = new Label()
 			{
 				Text = "CONGRATULATIONS!!!",
-				Top = top - 150
+				Top = top - 100
 			};
 
 			lbls[1] = new Label()

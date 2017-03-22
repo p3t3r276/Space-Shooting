@@ -34,14 +34,14 @@ namespace SpaceShooting.Manager
 			waves = new Wave[2];
 			waves[0] = new Wave()
 			{
-				enemyCount = 5,
+				enemyCount = 10,
 				timeBetweenSpawn = 1
 			};
 
 			waves[1] = new Wave()
 			{
-				enemyCount = 50,
-				timeBetweenSpawn = .5f
+				enemyCount = 25,
+				timeBetweenSpawn = .75f
 			};
 
 			NextWave();
@@ -56,7 +56,7 @@ namespace SpaceShooting.Manager
 
 				//spawn enemy
 				SpawnPoint spawnPoint = _spawnPoints[_rand.Next(0, _spawnPoints.Length)];
-				_handler.entitiesList.Add(new BasicEnemy(spawnPoint.X, spawnPoint.Y, _handler));
+				_handler.entitiesList.Add(new Enemy(spawnPoint.X, spawnPoint.Y, _handler));
 			}
 
 			CountEnemyRemainingAlive();

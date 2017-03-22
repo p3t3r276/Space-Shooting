@@ -48,13 +48,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Entity\BasicEnemy.cs" />
     <Compile Include="Entity\Bullet.cs" />
     <Compile Include="Entity\Enemy.cs" />
     <Compile Include="Entity\Entity.cs" />
     <Compile Include="Entity\Explosion.cs" />
     <Compile Include="Entity\Player.cs" />
-    <Compile Include="Entity\SmartEnemy.cs" />
     <Compile Include="Game.cs">
       <SubType>Form</SubType>
     </Compile>

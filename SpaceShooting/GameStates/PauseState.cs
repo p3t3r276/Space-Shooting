@@ -16,7 +16,7 @@ namespace SpaceShooting.GameStates
 		{
 			lbls = new Label[4];
 			Color color = Color.White;
-			fnt = new Font("Arial", 30f, FontStyle.Bold, GraphicsUnit.Pixel);
+			fnt = new Font("Arial", 50f, FontStyle.Bold, GraphicsUnit.Pixel);
 			int top = 250;
 
 			lbls[0] = new Label()
@@ -27,7 +27,7 @@ namespace SpaceShooting.GameStates
 
 			lbls[1] = new Label()
 			{
-				Text = "BUY AMMUNICATION: 15",
+				Text = "BUY AMMUNITION: 15",
 				Top = top
 			};
 

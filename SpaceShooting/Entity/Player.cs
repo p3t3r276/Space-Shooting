@@ -15,7 +15,7 @@ namespace SpaceShooting.Entity
 		public Player(float x, float y, Handler handler) : base(x, y, handler)
 		{
 			_speed = 10.0f;
-			_size = 32;
+			_size = 40;
 
 			_recovering = false;
 			_recoveringTimer = Environment.TickCount;
@@ -26,7 +26,7 @@ namespace SpaceShooting.Entity
 			base.Update();
 
 			_position.X = Game.Clamp(_position.X, 0, Game.WIDTH - 38);
-			_position.Y = Game.Clamp(_position.Y, 0, Game.HEIGHT - 32);
+			_position.Y = Game.Clamp(_position.Y, 0, Game.HEIGHT - _size);
 
 			Rotate();
 			Recover();
@@ -40,13 +40,13 @@ namespace SpaceShooting.Entity
 			g.TranslateTransform(-(_position.X + 16), -(_position.Y + 16));
 			if (_recovering)
 			{
-				g.FillEllipse(Brushes.DeepPink, _position.X, _position.Y, 32, 32);
+				g.FillEllipse(Brushes.DeepPink, _position.X, _position.Y, _size, _size);
 			}
 			else
 			{
-				g.FillEllipse(Brushes.White, _position.X, _position.Y, 32, 32);
+				g.FillEllipse(Brushes.White, _position.X, _position.Y, _size, _size);
 			}
-			g.FillRectangle(Brushes.Orange, _position.X + 12, _position.Y + 36, 8, 8);
+			g.FillRectangle(Brushes.Orange, _position.X + (_size - 4) / 2, _position.Y + _size, 8, 8);
 			g.ResetTransform();
 		}
 
@@ -115,7 +115,7 @@ namespace SpaceShooting.Entity
 			if (_recovering)
 			{
 				int elapsed = (Environment.TickCount - _recoveringTimer);
-				if (elapsed > 4000)
+				if (elapsed > 2000)
 				{
 					_recovering = false;
 					_recoveringTimer = Environment.TickCount;
