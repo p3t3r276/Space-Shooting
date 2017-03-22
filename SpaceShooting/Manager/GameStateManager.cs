@@ -1,4 +1,4 @@
-﻿using SpaceShooting.GameState;
+﻿using SpaceShooting.GameStates;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -6,21 +6,30 @@ namespace SpaceShooting.Manager
 {
 	public class GameStateManager
 	{
-		private GameState.GameState[] gameStates;
+		private GameState[] gameStates;
 		private int currentState;
 		private int previousState;
+		private Handler _handler;
 
 		public const int NUM_STATES = 4;
-		public const int INTRO = 0;
-		public const int MENU = 1;
-		public const int PLAY = 2;
-		public const int GAMEOVER = 3;
+		public const int MENU = 0;
+		public const int PLAY = 1;
+		public const int GAMEOVER = 2;
+		public const int GAMEFINISH = 3;
 
-		public GameStateManager()
+		private bool paused;
+		private PauseState pauseState;
+
+		public GameStateManager(Handler handler)
 		{
-			gameStates = new GameState.GameState[NUM_STATES];
-			SetState(PLAY);
+			_handler = new Handler();
 
+			paused = false;
+			pauseState = new PauseState(this, _handler);
+
+
+			gameStates = new GameState[NUM_STATES];
+			SetState(MENU);
 		}
 
 		public void SetState(int i)
@@ -29,18 +38,21 @@ namespace SpaceShooting.Manager
 			UnloadState(previousState);
 			currentState = i;
 
-			if (i == INTRO)
+			if (i == MENU)
 			{
-			}
-			else if (i == MENU)
-			{
+				gameStates[i] = new MenuState(this, _handler);
 			}
 			else if (i == PLAY)
 			{
-				gameStates[i] = new PlayState(this);
+				gameStates[i] = new PlayState(this, _handler);
 			}
 			else if (i == GAMEOVER)
 			{
+				gameStates[i] = new GameOverState(this, _handler);
+			}
+			else if (i == GAMEFINISH)
+			{
+				gameStates[i] = new GameFinishState(this, _handler);
 			}
 		}
 
@@ -51,7 +63,11 @@ namespace SpaceShooting.Manager
 
 		public void Update()
 		{
-			if (gameStates[currentState] != null)
+			if (paused)
+			{
+				pauseState.Update();
+			}
+			else if (gameStates[currentState] != null)
 			{
 				gameStates[currentState].Update();
 			}
@@ -67,7 +83,11 @@ namespace SpaceShooting.Manager
 
 		public void KeyDown(KeyEventArgs e)
 		{
-			if (gameStates[currentState] != null)
+			if (paused)
+			{
+				pauseState.KeyDown(e);
+			}
+			else if (gameStates[currentState] != null)
 			{
 				gameStates[currentState].KeyDown(e);
 			}
@@ -75,10 +95,36 @@ namespace SpaceShooting.Manager
 
 		public void Render(Graphics g)
 		{
-			if (gameStates[currentState] != null)
+			if (paused)
+			{
+				pauseState.Render(g);
+			}
+			else if (gameStates[currentState] != null)
 			{
 				gameStates[currentState].Render(g);
 			}
+		}
+
+		public void MouseDown(MouseEventArgs e)
+		{
+			if (gameStates[currentState] != null)
+			{
+				gameStates[currentState].MouseDown(e);
+			}
+		}
+
+		public void MouseUp(MouseEventArgs e)
+		{
+			if (gameStates[currentState] != null)
+			{
+				gameStates[currentState].MouseUp(e);
+			}
+		}
+
+		public bool Paused
+		{
+			get { return paused; }
+			set { paused = value; }
 		}
 	}
 }

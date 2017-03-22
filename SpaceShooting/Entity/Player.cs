@@ -1,4 +1,6 @@
-﻿using System;
+﻿using SpaceShooting.HUD;
+using SpaceShooting.Manager;
+using System;
 using System.Drawing;
 
 namespace SpaceShooting.Entity
@@ -6,11 +8,17 @@ namespace SpaceShooting.Entity
 	public class Player : Entity
 	{
 		private float rotAngle;
-		private bool _up = false, _down = false, _left = false, _right = false;
 
-		public Player(float x, float y) : base(x, y)
+		private bool _recovering;
+		private int _recoveringTimer;
+
+		public Player(float x, float y, Handler handler) : base(x, y, handler)
 		{
-			speed = 10.0f;
+			_speed = 10.0f;
+			_size = 32;
+
+			_recovering = false;
+			_recoveringTimer = Environment.TickCount;
 		}
 
 		public override void Update()
@@ -21,7 +29,8 @@ namespace SpaceShooting.Entity
 			_position.Y = Game.Clamp(_position.Y, 0, Game.HEIGHT - 32);
 
 			Rotate();
-			Move();
+			Recover();
+			Collision();
 		}
 
 		public override void Render(Graphics g)
@@ -29,19 +38,51 @@ namespace SpaceShooting.Entity
 			g.TranslateTransform(_position.X + 16, _position.Y + 16);
 			g.RotateTransform(-rotAngle);
 			g.TranslateTransform(-(_position.X + 16), -(_position.Y + 16));
-			g.FillRectangle(Brushes.White, _position.X, _position.Y, 32, 32);
+			if (_recovering)
+			{
+				g.FillEllipse(Brushes.DeepPink, _position.X, _position.Y, 32, 32);
+			}
+			else
+			{
+				g.FillEllipse(Brushes.White, _position.X, _position.Y, 32, 32);
+			}
 			g.FillRectangle(Brushes.Orange, _position.X + 12, _position.Y + 36, 8, 8);
 			g.ResetTransform();
 		}
 
-		public void Rotate()
+		public override void Collision()
 		{
-			var opp = Game.mousePositionRelativeToForm.X - _position.X;
-			var adj = Game.mousePositionRelativeToForm.Y - _position.Y;
-			rotAngle = (float)Math.Atan2(opp, adj) * Game.Rad2Deg;
+			if (!_recovering)
+			{
+				for (int i = 0; i < _handler.entitiesList.Count; i++)
+				{
+					Enemy temp = _handler.entitiesList[i] as Enemy;
+					if (temp != null)
+					{
+						if (GetBound().IntersectsWith(temp.GetBound()))
+						{
+							Hud.HEALTH--;
+							_recovering = true;
+						}
+					}
+				}
+			}
 		}
 
-		public void Move()
+		public override RectangleF GetBound()
+		{
+			return new RectangleF(_position.X, _position.Y, _size, _size);
+		}
+
+		public void Rotate()
+		{
+			//Tinh góc quay theo vik trí chuột
+			var opp = Game.mousePositionRelativeToForm.X - _position.X;
+			var adj = Game.mousePositionRelativeToForm.Y - _position.Y;
+			rotAngle = (float)Math.Atan2(opp, adj) * Game.RadToDeg;
+		}
+
+		public override void Move()
 		{
 			if (_up) _velocity.Y = -1;
 			else if (_down) _velocity.Y = 1;
@@ -52,24 +93,34 @@ namespace SpaceShooting.Entity
 			if (!_left && !_right) _velocity.X = 0;
 		}
 
-		public bool Up
+		public override void Attack()
 		{
-			set { _up = value; }
+			if (_firing)
+			{
+				// Chỉ bắn khi còn đạn
+				if (HUD.Hud.AMMO > 0)
+				{
+					if (Environment.TickCount > _firingTimerDelay + _firingTimer)
+					{
+						_firingTimer = Environment.TickCount;
+						_handler.entitiesList.Add(new Bullet(_position.X + _size / 2, _position.Y + _size / 2, _handler));
+						Hud.AMMO--;
+					}
+				}
+			}
 		}
 
-		public bool Down
+		public void Recover()
 		{
-			set { _down = value; }
-		}
-
-		public bool Left
-		{
-			set { _left = value; }
-		}
-
-		public bool Right
-		{
-			set { _right = value; }
+			if (_recovering)
+			{
+				int elapsed = (Environment.TickCount - _recoveringTimer);
+				if (elapsed > 4000)
+				{
+					_recovering = false;
+					_recoveringTimer = Environment.TickCount;
+				}
+			}
 		}
 	}
 }

@@ -26,7 +26,6 @@ namespace SpaceShooting.Manager
 				_form.FormBorderStyle = FormBorderStyle.None;
 				_form.TopMost = true;
 				_form.Bounds = Screen.PrimaryScreen.Bounds;
-				Cursor.Hide();
 			}
 		}
 

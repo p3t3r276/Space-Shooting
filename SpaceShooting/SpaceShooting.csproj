@@ -48,18 +48,31 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entity\BasicEnemy.cs" />
+    <Compile Include="Entity\Bullet.cs" />
+    <Compile Include="Entity\Enemy.cs" />
     <Compile Include="Entity\Entity.cs" />
+    <Compile Include="Entity\Explosion.cs" />
     <Compile Include="Entity\Player.cs" />
+    <Compile Include="Entity\SmartEnemy.cs" />
     <Compile Include="Game.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Game.Designer.cs">
       <DependentUpon>Game.cs</DependentUpon>
     </Compile>
-    <Compile Include="GameState\GameState.cs" />
-    <Compile Include="GameState\PlayState.cs" />
+    <Compile Include="GameStates\GameFinishState.cs" />
+    <Compile Include="GameStates\GameOverState.cs" />
+    <Compile Include="GameStates\GameState.cs" />
+    <Compile Include="GameStates\MenuState.cs" />
+    <Compile Include="GameStates\PauseState.cs" />
+    <Compile Include="GameStates\PlayState.cs" />
+    <Compile Include="HUD\Hud.cs" />
     <Compile Include="Manager\GameStateManager.cs" />
+    <Compile Include="Manager\Handler.cs" />
     <Compile Include="Manager\Spawner.cs" />
+    <Compile Include="Manager\SpawnPoint.cs" />
+    <Compile Include="Manager\Wave.cs" />
     <Compile Include="Manager\WindowManager.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
