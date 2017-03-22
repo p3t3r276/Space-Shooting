@@ -17,7 +17,7 @@ namespace SpaceShooting.Entity
 			_health = 2;
 			_speed = 6.0f;
 			_size = 25;
-			_coins = 5;
+			_coins = 1;
 			_hit = false;
 			_hitTimer = 0;
 		}

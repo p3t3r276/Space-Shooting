@@ -34,13 +34,13 @@ namespace SpaceShooting.Manager
 			waves = new Wave[2];
 			waves[0] = new Wave()
 			{
-				enemyCount = 10,
+				enemyCount = 5,
 				timeBetweenSpawn = 1
 			};
 
 			waves[1] = new Wave()
 			{
-				enemyCount = 25,
+				enemyCount = 10,
 				timeBetweenSpawn = .75f
 			};
 

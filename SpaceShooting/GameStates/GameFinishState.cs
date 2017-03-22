@@ -14,24 +14,23 @@ namespace SpaceShooting.GameStates
 		{
 			lbls = new Label[3];
 			Font fnt = new Font("Arial", 55f, FontStyle.Bold, GraphicsUnit.Pixel);
-			int top = 250;
 
 			lbls[0] = new Label()
 			{
 				Text = "CONGRATULATIONS!!!",
-				Top = top - 100
+				Top = 100
 			};
 
 			lbls[1] = new Label()
 			{
 				Text = "Play Again",
-				Top = top
+				Top = lbls[0].Top + 200
 			};
 
 			lbls[2] = new Label()
 			{
 				Text = "Main Menu",
-				Top = lbls[1].Top + 100
+				Top = lbls[1].Top + 150
 			};
 
 			foreach (Label lbl in lbls)
@@ -53,9 +52,7 @@ namespace SpaceShooting.GameStates
 			if (tempLabel == lbls[1])
 			{
 				Game.mainForm.Controls.Clear();
-				Hud.AMMO = 100;
-				Hud.COINS = 0;
-				Hud.HEALTH = 10;
+				Hud.Reset();
 				_gsm.SetState(GameStateManager.PLAY);
 			}
 			else if (tempLabel == lbls[2])

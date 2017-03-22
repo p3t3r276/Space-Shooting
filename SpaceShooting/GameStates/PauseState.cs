@@ -11,36 +11,37 @@ namespace SpaceShooting.GameStates
 		Label[] lbls;
 		Font fnt;
 		Hud hud;
+		private const int AMMUNITION_PRICE = 5;
+		private const int HEALTH_PRICE = 10;
 
 		public PauseState(GameStateManager gsm, Handler handler) : base(gsm, handler)
 		{
 			lbls = new Label[4];
 			Color color = Color.White;
 			fnt = new Font("Arial", 50f, FontStyle.Bold, GraphicsUnit.Pixel);
-			int top = 250;
 
 			lbls[0] = new Label()
 			{
 				Text = "PAUSE",
-				Top = top - 150
+				Top = 100
 			};
 
 			lbls[1] = new Label()
 			{
-				Text = "BUY AMMUNITION: 15",
-				Top = top
+				Text = "CLICK TO BUY AMMUNITION: " + AMMUNITION_PRICE,
+				Top = lbls[0].Top + 150
 			};
 
 			lbls[2] = new Label()
 			{
-				Text = "BUY HEALTH: 20",
-				Top = lbls[1].Top + 80
+				Text = "CLICK TO BUY HEALTH: " + HEALTH_PRICE,
+				Top = lbls[1].Top + 100
 			};
 
 			lbls[3] = new Label()
 			{
 				Text = "MAIN MENU",
-				Top = lbls[2].Top + 80
+				Top = lbls[2].Top + 100
 			};
 
 			foreach (Label lbl in lbls)
@@ -62,18 +63,18 @@ namespace SpaceShooting.GameStates
 			Label tempLabel = sender as Label;
 			if (tempLabel == lbls[1])
 			{
-				if (Hud.COINS >= 15)
+				if (Hud.COINS >= AMMUNITION_PRICE)
 				{
 					Hud.AMMO = 100;
-					Hud.COINS -= 15;
+					Hud.COINS -= AMMUNITION_PRICE;
 				}
 			}
 			else if (tempLabel == lbls[2])
 			{
-				if (Hud.COINS >= 20)
+				if (Hud.COINS >= HEALTH_PRICE)
 				{
-					Hud.COINS -= 20;
 					Hud.HEALTH = 10;
+					Hud.COINS -= HEALTH_PRICE;
 				}
 			}
 			else if (tempLabel == lbls[3])

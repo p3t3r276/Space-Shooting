@@ -11,11 +11,12 @@ namespace SpaceShooting.Manager
 		private int previousState;
 		private Handler _handler;
 
-		public const int NUM_STATES = 4;
+		public const int NUM_STATES = 5;
 		public const int MENU = 0;
 		public const int PLAY = 1;
 		public const int GAMEOVER = 2;
 		public const int GAMEFINISH = 3;
+		public const int INSTRUCTION = 4;
 
 		private bool paused;
 		private PauseState pauseState;
@@ -53,6 +54,10 @@ namespace SpaceShooting.Manager
 			else if (i == GAMEFINISH)
 			{
 				gameStates[i] = new GameFinishState(this, _handler);
+			}
+			else if (i == INSTRUCTION)
+			{
+				gameStates[i] = new InstructionState(this, _handler);
 			}
 		}
 

@@ -62,6 +62,7 @@
     <Compile Include="GameStates\GameFinishState.cs" />
     <Compile Include="GameStates\GameOverState.cs" />
     <Compile Include="GameStates\GameState.cs" />
+    <Compile Include="GameStates\InstructionState.cs" />
     <Compile Include="GameStates\MenuState.cs" />
     <Compile Include="GameStates\PauseState.cs" />
     <Compile Include="GameStates\PlayState.cs" />

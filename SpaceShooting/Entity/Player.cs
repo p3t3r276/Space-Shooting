@@ -35,9 +35,9 @@ namespace SpaceShooting.Entity
 
 		public override void Render(Graphics g)
 		{
-			g.TranslateTransform(_position.X + 16, _position.Y + 16);
+			g.TranslateTransform(_position.X + _size / 2, _position.Y + _size / 2);
 			g.RotateTransform(-rotAngle);
-			g.TranslateTransform(-(_position.X + 16), -(_position.Y + 16));
+			g.TranslateTransform(-(_position.X + _size / 2), -(_position.Y + _size / 2));
 			if (_recovering)
 			{
 				g.FillEllipse(Brushes.DeepPink, _position.X, _position.Y, _size, _size);
@@ -77,17 +77,17 @@ namespace SpaceShooting.Entity
 		public void Rotate()
 		{
 			//Tinh góc quay theo vik trí chuột
-			var opp = Game.mousePositionRelativeToForm.X - _position.X;
-			var adj = Game.mousePositionRelativeToForm.Y - _position.Y;
+			var opp = Game.mousePositionRelativeToForm.X - _position.X + _size / 2;
+			var adj = Game.mousePositionRelativeToForm.Y - _position.Y + _size / 2;
 			rotAngle = (float)Math.Atan2(opp, adj) * Game.RadToDeg;
 		}
 
 		public override void Move()
 		{
 			if (_up) _velocity.Y = -1;
-			else if (_down) _velocity.Y = 1;
-			else if (_left) _velocity.X = -1;
-			else if (_right) _velocity.X = 1;
+			if (_down) _velocity.Y = 1;
+			if (_left) _velocity.X = -1;
+			if (_right) _velocity.X = 1;
 
 			if (!_up && !_down) _velocity.Y = 0;
 			if (!_left && !_right) _velocity.X = 0;
@@ -98,7 +98,7 @@ namespace SpaceShooting.Entity
 			if (_firing)
 			{
 				// Chỉ bắn khi còn đạn
-				if (HUD.Hud.AMMO > 0)
+				if (Hud.AMMO > 0)
 				{
 					if (Environment.TickCount > _firingTimerDelay + _firingTimer)
 					{
@@ -114,8 +114,7 @@ namespace SpaceShooting.Entity
 		{
 			if (_recovering)
 			{
-				int elapsed = (Environment.TickCount - _recoveringTimer);
-				if (elapsed > 2000)
+				if (Environment.TickCount > _recoveringTimer + 2000)
 				{
 					_recovering = false;
 					_recoveringTimer = Environment.TickCount;

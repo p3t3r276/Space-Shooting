@@ -48,22 +48,22 @@ namespace SpaceShooting.GameStates
 		{
 			for (int i = 0; i < _handler.entitiesList.Count; i++)
 			{
-				Player player = _handler.entitiesList[i] as Player;
-				if (player != null)
+				Player tempObject = _handler.entitiesList[i] as Player;
+				if (tempObject != null)
 				{
 					switch (e.KeyCode)
 					{
 						case Keys.W:
-							player.Up = false;
+							tempObject.Up = false;
 							break;
 						case Keys.S:
-							player.Down = false;
+							tempObject.Down = false;
 							break;
 						case Keys.A:
-							player.Left = false;
+							tempObject.Left = false;
 							break;
 						case Keys.D:
-							player.Right = false;
+							tempObject.Right = false;
 							break;
 					}
 				}
@@ -79,22 +79,22 @@ namespace SpaceShooting.GameStates
 
 			for (int i = 0; i < _handler.entitiesList.Count; i++)
 			{
-				Entity.Entity player = _handler.entitiesList[i];
-				if (player is Player)
+				Player tempObject = _handler.entitiesList[i] as Player;
+				if (tempObject != null)
 				{
 					switch (e.KeyCode)
 					{
 						case Keys.W:
-							player.Up = true;
+							tempObject.Up = true;
 							break;
 						case Keys.S:
-							player.Down = true;
+							tempObject.Down = true;
 							break;
 						case Keys.A:
-							player.Left = true;
+							tempObject.Left = true;
 							break;
 						case Keys.D:
-							player.Right = true;
+							tempObject.Right = true;
 							break;
 					}
 				}
@@ -107,10 +107,10 @@ namespace SpaceShooting.GameStates
 			{
 				for (int i = 0; i < _handler.entitiesList.Count; i++)
 				{
-					Entity.Entity temp = _handler.entitiesList[i];
-					if (temp is Player)
+					Player tempObject = _handler.entitiesList[i] as Player;
+					if (tempObject != null)
 					{
-						temp.Firing = true;
+						tempObject.Firing = true;
 					}
 				}
 			}
@@ -122,10 +122,10 @@ namespace SpaceShooting.GameStates
 			{
 				for (int i = 0; i < _handler.entitiesList.Count; i++)
 				{
-					Entity.Entity temp = _handler.entitiesList[i];
-					if (temp is Player)
+					Player tempObject = _handler.entitiesList[i] as Player;
+					if (tempObject is Player)
 					{
-						temp.Firing = false;
+						tempObject.Firing = false;
 					}
 				}
 			}
