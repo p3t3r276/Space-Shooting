@@ -19,12 +19,16 @@ namespace SpaceShooting.Manager
 		private int enemiesRemainingAlive;
 		private float nextSpawnTime;
 
+		private bool _allWavesCompeleted;
+
 		public Spawner(Handler handler, SpawnPoint[] spawnPoints)
 		{
 			_handler = handler;
 			_spawnPoints = spawnPoints;
 
 			_rand = new Random();
+
+			_allWavesCompeleted = false;
 
 			//define the waves
 			waves = new Wave[2];
@@ -36,8 +40,8 @@ namespace SpaceShooting.Manager
 
 			waves[1] = new Wave()
 			{
-				enemyCount = 10,
-				timeBetweenSpawn = .75f
+				enemyCount = 50,
+				timeBetweenSpawn = .5f
 			};
 
 			NextWave();
@@ -45,8 +49,6 @@ namespace SpaceShooting.Manager
 
 		public void Update()
 		{
-
-
 			if (enemiesRemainingToSpawn >= 0 && Environment.TickCount > nextSpawnTime)
 			{
 				enemiesRemainingToSpawn--;
@@ -58,7 +60,9 @@ namespace SpaceShooting.Manager
 			}
 
 			CountEnemyRemainingAlive();
-			if (enemiesRemainingAlive == 0)
+			CheckAllWavesCompleted();
+
+			if (enemiesRemainingAlive == 0 && !_allWavesCompeleted)
 			{
 				NextWave();
 			}
@@ -91,6 +95,21 @@ namespace SpaceShooting.Manager
 				}
 			}
 			return enemiesRemainingAlive;
+		}
+
+		public bool CheckAllWavesCompleted()
+		{
+			if (enemiesRemainingAlive == 0 && !_allWavesCompeleted && currentWaveNumber == waves.Length)
+			{
+				_allWavesCompeleted = true;
+			}
+
+			return _allWavesCompeleted;
+		}
+
+		public bool AllWaveCompleted
+		{
+			get { return _allWavesCompeleted; }
 		}
 	}
 }

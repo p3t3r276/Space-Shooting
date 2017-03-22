@@ -48,10 +48,11 @@ namespace SpaceShooting.Manager
 			}
 			else if (i == GAMEOVER)
 			{
+				gameStates[i] = new GameOverState(this, _handler);
 			}
 			else if (i == GAMEFINISH)
 			{
-
+				gameStates[i] = new GameFinishState(this, _handler);
 			}
 		}
 

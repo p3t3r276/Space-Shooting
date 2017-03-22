@@ -1,37 +1,37 @@
-﻿using SpaceShooting.Manager;
+﻿using SpaceShooting.HUD;
+using SpaceShooting.Manager;
 using System;
 using System.Drawing;
 using System.Windows.Forms;
 
 namespace SpaceShooting.GameStates
 {
-	public class MenuState : GameState
+	public class GameFinishState : GameState
 	{
 		Label[] lbls;
-		Font fnt;
 
-		public MenuState(GameStateManager gsm, Handler handler) : base(gsm, handler)
+		public GameFinishState(GameStateManager gsm, Handler handler) : base(gsm, handler)
 		{
 			lbls = new Label[3];
-			fnt = new Font("Arial", 55f, FontStyle.Bold, GraphicsUnit.Pixel);
-			int top = 300;
+			Font fnt = new Font("Arial", 50f, FontStyle.Bold, GraphicsUnit.Pixel);
+			int top = 250;
 
 			lbls[0] = new Label()
 			{
-				Text = "SPACE SHOOTING",
+				Text = "CONGRATULATIONS!!!",
 				Top = top - 150
 			};
 
 			lbls[1] = new Label()
 			{
-				Text = "PLAY",
+				Text = "Play Again",
 				Top = top
 			};
 
 			lbls[2] = new Label()
 			{
-				Text = "QUIT",
-				Top = top + 100
+				Text = "Main Menu",
+				Top = lbls[1].Top + 100
 			};
 
 			foreach (Label lbl in lbls)
@@ -53,17 +53,16 @@ namespace SpaceShooting.GameStates
 			if (tempLabel == lbls[1])
 			{
 				Game.mainForm.Controls.Clear();
+				Hud.AMMO = 100;
+				Hud.COINS = 0;
+				Hud.HEALTH = 10;
 				_gsm.SetState(GameStateManager.PLAY);
 			}
 			else if (tempLabel == lbls[2])
 			{
-				Application.Exit();
+				Game.mainForm.Controls.Clear();
+				_gsm.SetState(GameStateManager.MENU);
 			}
-		}
-
-		public override void Render(Graphics g)
-		{
-			base.Render(g);
 		}
 
 		public override void KeyDown(KeyEventArgs e)

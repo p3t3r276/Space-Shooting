@@ -34,18 +34,19 @@ namespace SpaceShooting.GameStates
 			lbls[2] = new Label()
 			{
 				Text = "BUY HEALTH: 20",
-				Top = top + 50
+				Top = lbls[1].Top + 80
 			};
 
 			lbls[3] = new Label()
 			{
 				Text = "MAIN MENU",
-				Top = lbls[2].Top + 70
+				Top = lbls[2].Top + 80
 			};
 
 			foreach (Label lbl in lbls)
 			{
-				lbl.ForeColor = color;
+				lbl.ForeColor = Color.White;
+				lbl.BackColor = Color.Transparent;
 				lbl.Font = fnt;
 				lbl.TextAlign = ContentAlignment.MiddleCenter;
 				lbl.Size = new Size(Game.WIDTH, Game.HEIGHT / 9);
@@ -89,7 +90,6 @@ namespace SpaceShooting.GameStates
 
 		public override void Update()
 		{
-			base.Update();
 			hud.Update();
 
 			if (_gsm.Paused == true)

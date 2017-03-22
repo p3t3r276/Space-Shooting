@@ -54,7 +54,7 @@ namespace SpaceShooting
 			_timer.Tick += new EventHandler(Game_Update);
 
 
-			_window = new WindowManager(WIDTH, HEIGHT, "Space Shooting Game", Color.Black, this, false);
+			_window = new WindowManager(WIDTH, HEIGHT, "Space Shooting Game", Color.Black, this, true);
 
 			if (_window.FullScreen == true)
 			{

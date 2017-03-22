@@ -33,6 +33,9 @@ namespace SpaceShooting.GameStates
 
 			_spawner.Update();
 			_hud.Update();
+
+			CheckGameOver();
+			CheckGameFinish();
 		}
 
 		public override void Render(Graphics g)
@@ -125,6 +128,24 @@ namespace SpaceShooting.GameStates
 						temp.Firing = false;
 					}
 				}
+			}
+		}
+
+		public void CheckGameOver()
+		{
+			if (Hud.HEALTH <= 0)
+			{
+				_handler.entitiesList.Clear();
+				_gsm.SetState(GameStateManager.GAMEOVER);
+			}
+		}
+
+		public void CheckGameFinish()
+		{
+			if (_spawner.AllWaveCompleted)
+			{
+				_handler.entitiesList.Clear();
+				_gsm.SetState(GameStateManager.GAMEFINISH);
 			}
 		}
 	}
