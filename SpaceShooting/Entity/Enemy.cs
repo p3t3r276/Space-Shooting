@@ -65,6 +65,7 @@ namespace SpaceShooting.Entity
 
 					_velocity.X = (1 / dist) * diffX;
 					_velocity.Y = (1 / dist) * diffY;
+                    break;
 				}
 			}
 		}

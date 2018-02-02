@@ -100,11 +100,6 @@ namespace SpaceShooting.GameStates
 					Game.mainForm.Controls.Add(lbl);
 				}
 			}
-
-			foreach (Label lbl in lbls)
-			{
-
-			}
 		}
 
 		public override void Render(Graphics g)
